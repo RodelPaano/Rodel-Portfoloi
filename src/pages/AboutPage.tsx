@@ -24,7 +24,7 @@ const AboutPage = () => {
             </div>
 
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mt-6">
-              'm an aspiring software developer with a deep desire to learn,
+              I'm an aspiring software developer with a deep desire to learn,
               grow, and someday be part of the tech industry. I'm passionate
               about building creative solutions and continuously exploring new
               technologies. Here's a glimpse into my journey and the dreams that
