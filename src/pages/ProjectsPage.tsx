@@ -16,7 +16,15 @@ const ProjectsPage = () => {
       title: "Air Quality Monitoring Device with Alert System",
       description:
         "An IoT-enabled system that tracks air quality metrics in real time and sends alerts when pollution levels exceed safe thresholds. Includes a dashboard for data visualization and device management.",
-      tech: ["React", "Node.js", "Firebase", "Express.js"],
+      tech: [
+        "React",
+        "Node.js",
+        "Firebase",
+        "Express.js",
+        "PlatformIO",
+        "c++",
+        "Esp32",
+      ],
       category: "Full Stack",
       github: "#",
       demo: "#",
@@ -43,7 +51,7 @@ const ProjectsPage = () => {
     },
     {
       id: 4,
-      title: "Online Booking Result",
+      title: "Online Booking Resort",
       description:
         "A booking result system that allows users to view and manage reservations. Includes admin tools for updating schedules and generating reports, with a clean UI and responsive design.",
       tech: ["PHP", "XAMPP", "CSS", "Bootstrap"],
