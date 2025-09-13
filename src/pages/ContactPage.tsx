@@ -9,7 +9,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Github, Linkedin, Send } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Send,
+  Facebook,
+} from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -199,6 +207,15 @@ const ContactPage = () => {
                       >
                         <Linkedin className="h-4 w-4 mr-2" />
                         LinkedIn
+                      </a>
+                    </Button>
+                    <Button variant="outline" size="sm" asChild>
+                      <a
+                        href="https://web.facebook.com/rodelmacawile.paano"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Facebook className="h-4 w-4 mr-2" />
                       </a>
                     </Button>
                   </div>

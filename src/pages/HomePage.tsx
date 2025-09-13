@@ -1,7 +1,7 @@
 import TypewriterText from "@/components/TypewriterText";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 import ProfileImage from "@/assets/ProfileImage.jpg";
 
@@ -88,6 +88,19 @@ const HomePage = () => {
                     className="rounded-full w-10 h-10"
                   >
                     <Mail className="h-5 w-5" />
+                  </Button>
+                </a>
+                <a
+                  href="https://web.facebook.com/rodelmacawile.paano"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full w-10 h-10"
+                  >
+                    <Facebook className="h-5 w-5" />
                   </Button>
                 </a>
               </div>
