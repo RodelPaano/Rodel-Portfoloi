@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,7 +18,7 @@ const ContactPage = () => {
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
   });
   const { toast } = useToast();
 
@@ -26,10 +32,12 @@ const ContactPage = () => {
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -39,10 +47,13 @@ const ContactPage = () => {
         <div className="max-w-content mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">Get In Touch</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+              Get In Touch
+            </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              I'm always interested in hearing about new opportunities, projects, or just having 
-              a conversation about technology. Feel free to reach out!
+              I'm always interested in hearing about new opportunities,
+              projects, or just having a conversation about technology. Feel
+              free to reach out!
             </p>
           </div>
 
@@ -55,7 +66,8 @@ const ContactPage = () => {
                   Send me a message
                 </CardTitle>
                 <CardDescription>
-                  Fill out the form below and I'll get back to you as soon as possible.
+                  Fill out the form below and I'll get back to you as soon as
+                  possible.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -85,7 +97,7 @@ const ContactPage = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="subject">Subject</Label>
                     <Input
@@ -97,7 +109,7 @@ const ContactPage = () => {
                       placeholder="What's this about?"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message">Message</Label>
                     <Textarea
@@ -110,7 +122,7 @@ const ContactPage = () => {
                       className="min-h-32"
                     />
                   </div>
-                  
+
                   <Button type="submit" className="w-full">
                     Send Message
                     <Send className="ml-2 h-4 w-4" />
@@ -136,20 +148,22 @@ const ContactPage = () => {
                       <p className="text-muted-foreground">rodel@example.com</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-4">
                     <Phone className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Phone</p>
-                      <p className="text-muted-foreground">+63 XXX XXX XXXX</p>
+                      <p className="text-muted-foreground">+63 916 114 1713</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-4">
                     <MapPin className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Location</p>
-                      <p className="text-muted-foreground">Philippines</p>
+                      <p className="text-muted-foreground">
+                        Brgy. 02, Mercedes E. Samar
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -165,14 +179,22 @@ const ContactPage = () => {
                 <CardContent>
                   <div className="flex space-x-4">
                     <Button variant="outline" size="sm" asChild>
-                      <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://github.com/RodelPaano/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="h-4 w-4 mr-2" />
                         GitHub
                       </a>
                     </Button>
-                    
+
                     <Button variant="outline" size="sm" asChild>
-                      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://www.linkedin.com/feed/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Linkedin className="h-4 w-4 mr-2" />
                         LinkedIn
                       </a>
@@ -187,8 +209,9 @@ const ContactPage = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    I typically respond to messages within 24 hours. For urgent matters, 
-                    feel free to send a follow-up message or reach out via multiple channels.
+                    I typically respond to messages within 24 hours. For urgent
+                    matters, feel free to send a follow-up message or reach out
+                    via multiple channels.
                   </p>
                 </CardContent>
               </Card>
