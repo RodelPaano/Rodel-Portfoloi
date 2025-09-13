@@ -127,11 +127,11 @@ const HomePage = () => {
               "JavaScript",
               "React",
               "Node.js",
-              "Python",
+              "ASP.NET/C#",
               "TypeScript",
               "Git",
-              "Docker",
-              "AWS",
+              "Swagger",
+              "Postman",
             ].map((tech) => (
               <Card
                 key={tech}
