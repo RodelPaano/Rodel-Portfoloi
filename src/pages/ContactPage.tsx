@@ -216,6 +216,7 @@ const ContactPage = () => {
                         rel="noopener noreferrer"
                       >
                         <Facebook className="h-4 w-4 mr-2" />
+                        Facebook
                       </a>
                     </Button>
                   </div>
