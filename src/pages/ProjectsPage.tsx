@@ -26,8 +26,8 @@ const ProjectsPage = () => {
         "Esp32",
       ],
       category: "Full Stack",
-      github: "https://github.com/RodelPaano/",
-      demo: "#",
+      // github: "https://github.com/RodelPaano/",
+      // demo: "#",
     },
     {
       id: 2,
@@ -36,8 +36,8 @@ const ProjectsPage = () => {
         "A full-featured e-commerce platform with product listings, user authentication, inventory management, and secure checkout. Built for scalability and easy admin control.",
       tech: ["React.js", "ASP.NET", "C#", "MySQL"],
       category: "Web App",
-      github: "https://github.com/RodelPaano/",
-      demo: "#",
+      // github: "https://github.com/RodelPaano/",
+      // demo: "#",
     },
     {
       id: 3,
@@ -46,8 +46,8 @@ const ProjectsPage = () => {
         "A location-based weather simulation dashboard that visualizes forecast data using interactive charts. Tailored for Eastern Samar with real-time updates via OpenWeather API.",
       tech: ["HTML", "CSS", "Chart.js", "OpenWeather API", "JavaScript"],
       category: "Frontend",
-      github: "https://github.com/RodelPaano/",
-      demo: "#",
+      // github: "https://github.com/RodelPaano/",
+      // demo: "#",
     },
     {
       id: 4,
@@ -56,8 +56,8 @@ const ProjectsPage = () => {
         "A booking result system that allows users to view and manage reservations. Includes admin tools for updating schedules and generating reports, with a clean UI and responsive design.",
       tech: ["PHP", "XAMPP", "CSS", "Bootstrap"],
       category: "Full Stack",
-      github: "https://github.com/RodelPaano/",
-      demo: "https://github.com/RodelPaano/",
+      // github: "https://github.com/RodelPaano/",
+      // demo: "https://github.com/RodelPaano/",
     },
     {
       id: 5,
@@ -66,8 +66,8 @@ const ProjectsPage = () => {
         "A personal portfolio site showcasing projects, skills, and contact information. Features smooth animations, responsive layout, and clean design for professional presentation.",
       tech: ["React", "TypeScript", "Framer Motion", "Netlify"],
       category: "Frontend",
-      github: "https://github.com/RodelPaano/",
-      demo: "https://github.com/RodelPaano/",
+      // github: "https://github.com/RodelPaano/",
+      // demo: "https://github.com/RodelPaano/",
     },
     {
       id: 6,
@@ -76,8 +76,8 @@ const ProjectsPage = () => {
         "A real-time messaging app with support for private chats, group conversations, and file sharing. Built with scalable architecture and socket-based communication.",
       tech: ["React", "Socket.io", "Node.js", "MongoDB"],
       category: "Full Stack",
-      github: "https://github.com/RodelPaano/",
-      demo: "https://github.com/RodelPaano/",
+      // github: "https://github.com/RodelPaano/",
+      // demo: "https://github.com/RodelPaano/",
     },
   ];
 
