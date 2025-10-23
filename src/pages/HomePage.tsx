@@ -38,8 +38,8 @@ const HomePage = () => {
                   <Link to="/contact">Get in Touch</Link>
                 </Button>
                 <a
-                  href="/files/sample.csv" // path to your file
-                  download="Report.csv" // optional: rename the file on download
+                  href="../files/Brown & Cream Professional Web Developer Resume.pdf" 
+                  download="Report.csv" 
                   target="_blank"
                   rel="noopener noreferrer"
                 >
