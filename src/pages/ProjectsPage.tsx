@@ -10,7 +10,17 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Folder } from "lucide-react";
 
 const ProjectsPage = () => {
-  const projects = [
+  interface Project {
+    id: number;
+    title: string;
+    description: string;
+    tech: string[];
+    category: string;
+    github?: string;
+    demo?: string;
+  }
+
+  const projects: Project[] = [
     {
       id: 1,
       title: "Air Quality Monitoring Device with Alert System",
@@ -116,7 +126,7 @@ const ProjectsPage = () => {
                         asChild
                       >
                         <a
-                          href={project.github}
+                          href={project.github ?? '#'}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
