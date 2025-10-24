@@ -44,7 +44,7 @@ const HomePage = () => {
                   rel="noopener noreferrer"
                 >
                   <Button variant="outline" size="sm">
-                    Download Resume
+                    Download CVT
                   </Button>
                 </a>
               </div>
