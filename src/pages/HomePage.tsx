@@ -38,13 +38,13 @@ const HomePage = () => {
                   <Link to="/contact">Get in Touch</Link>
                 </Button>
                 <a
-                  href="../files/Brown & Cream Professional Web Developer Resume.pdf" 
-                  download="../files/Brown & Cream Professional Web Developer Resume.pdf" 
+                  href="/files/Brown_Cream_Web_Developer_Resume.pdf" 
+                  download="Brown_Cream_Web_Developer_Resume.pdf" 
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button variant="outline" size="sm">
-                    Download CSV
+                    Download Resume
                   </Button>
                 </a>
               </div>
