@@ -39,12 +39,11 @@ const HomePage = () => {
                 </Button>
                 <a
                   href="/Rodel-Portfolio/files/Brown_Cream_Web_Developer_Resume.pdf" 
-                  download="Brown_Cream_Web_Developer_Resume.pdf" 
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button variant="outline" size="sm">
-                    Download CVT
+                    Download CV
                   </Button>
                 </a>
               </div>
