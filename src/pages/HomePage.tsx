@@ -39,7 +39,7 @@ const HomePage = () => {
                 </Button>
                 <a
                   href="../files/Brown & Cream Professional Web Developer Resume.pdf" 
-                  download="Report.csv" 
+                  download="../files/Brown & Cream Professional Web Developer Resume.pdf" 
                   target="_blank"
                   rel="noopener noreferrer"
                 >
