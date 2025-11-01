@@ -38,8 +38,8 @@ const HomePage = () => {
                   <Link to="/contact">Get in Touch</Link>
                 </Button>
                 <a
-                  href="/Rodel-Portfoloi/files/Brown_Cream_Web_Developer_Resume.pdf"
-                  download="Brown_Cream_Web_Developer_Resume.pdf"
+                  href="/Rodel-Portfoloi/files/Rodel_M_Paano_Resume.pdf"
+                  download="Rodel_M_Paano_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
