@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Github, Linkedin, Mail, ArrowRight, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
-import ProfileImage from "@/assets/ProfileImage.jpg";
+import unnamed from "@/assets/unnamed (1).jpg";
 
 const HomePage = () => {
   return (
@@ -111,7 +111,7 @@ const HomePage = () => {
               <div className="relative">
                 <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-border">
                   <img
-                    src={ProfileImage}
+                    src={unnamed}
                     alt="Rodel - Software Developer"
                     className="w-full h-full object-cover"
                   />

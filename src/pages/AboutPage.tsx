@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Code, Coffee, Heart } from "lucide-react";
-import ProfileImage from "@/assets/ProfileImage.jpg";
+import unnamed from "@/assets/unnamed (1).jpg";
 
 const AboutPage = () => {
   return (
@@ -16,7 +16,7 @@ const AboutPage = () => {
             <div className="flex justify-center">
               <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-border">
                 <img
-                  src={ProfileImage}
+                  src={unnamed}
                   alt="Rodel - Software Developer"
                   className="w-full h-full object-cover"
                 />
