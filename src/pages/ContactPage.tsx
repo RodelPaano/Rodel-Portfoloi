@@ -1,3 +1,4 @@
+// src/pages/ContactPage.tsx
 import {
   Card,
   CardContent,
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "emailjs-com";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -32,12 +34,34 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend service
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    emailjs
+      .send(
+        "service_zqkkmzt", // replace with your actual EmailJS service ID
+        "template_xxxxxx", // replace with your actual EmailJS template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        "YOUR_PUBLIC_KEY" // replace with your actual EmailJS public key
+      )
+      .then(
+        () => {
+          toast({
+            title: "Message sent!",
+            description: "Thank you for your message. I'll get back to you soon.",
+          });
+          setFormData({ name: "", email: "", subject: "", message: "" });
+        },
+        () => {
+          toast({
+            title: "Error",
+            description: "Failed to send message. Please try again later.",
+          });
+        }
+      );
   };
 
   const handleChange = (
@@ -53,20 +77,14 @@ const ContactPage = () => {
     <div className="min-h-screen pt-nav-height">
       <div className="py-section px-4 sm:px-6 lg:px-8">
         <div className="max-w-content mx-auto">
-          {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Get In Touch
-            </h1>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6">Get In Touch</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              I'm always interested in hearing about new opportunities,
-              projects, or just having a conversation about technology. Feel
-              free to reach out!
+              I'm always interested in hearing about new opportunities, projects, or just having a conversation about technology. Feel free to reach out!
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
@@ -74,8 +92,7 @@ const ContactPage = () => {
                   Send me a message
                 </CardTitle>
                 <CardDescription>
-                  Fill out the form below and I'll get back to you as soon as
-                  possible.
+                  Fill out the form below and I'll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -139,7 +156,6 @@ const ContactPage = () => {
               </CardContent>
             </Card>
 
-            {/* Contact Information */}
             <div className="space-y-6">
               <Card>
                 <CardHeader>
@@ -153,9 +169,7 @@ const ContactPage = () => {
                     <Mail className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p className="text-muted-foreground">
-                        rodel09paano@gmail.com
-                      </p>
+                      <p className="text-muted-foreground">rodel09paano@gmail.com</p>
                     </div>
                   </div>
 
@@ -171,9 +185,7 @@ const ContactPage = () => {
                     <MapPin className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Location</p>
-                      <p className="text-muted-foreground">
-                        Brgy. 02, Mercedes E. Samar
-                      </p>
+                      <p className="text-muted-foreground">Brgy. 02, Mercedes E. Samar</p>
                     </div>
                   </div>
                 </CardContent>
@@ -189,32 +201,19 @@ const ContactPage = () => {
                 <CardContent>
                   <div className="flex space-x-4">
                     <Button variant="outline" size="sm" asChild>
-                      <a
-                        href="https://github.com/RodelPaano/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://github.com/RodelPaano/" target="_blank" rel="noopener noreferrer">
                         <Github className="h-4 w-4 mr-2" />
                         GitHub
                       </a>
                     </Button>
-
                     <Button variant="outline" size="sm" asChild>
-                      <a
-                        href="https://www.linkedin.com/feed/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">
                         <Linkedin className="h-4 w-4 mr-2" />
                         LinkedIn
                       </a>
                     </Button>
                     <Button variant="outline" size="sm" asChild>
-                      <a
-                        href="https://web.facebook.com/rodelmacawile.paano"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://web.facebook.com/rodelmacawile.paano" target="_blank" rel="noopener noreferrer">
                         <Facebook className="h-4 w-4 mr-2" />
                         Facebook
                       </a>
@@ -229,9 +228,7 @@ const ContactPage = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    I typically respond to messages within 24 hours. For urgent
-                    matters, feel free to send a follow-up message or reach out
-                    via multiple channels.
+                    I typically respond to messages within 24 hours. For urgent matters, feel free to send a follow-up message or reach out via multiple channels.
                   </p>
                 </CardContent>
               </Card>
