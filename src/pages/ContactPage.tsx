@@ -38,14 +38,14 @@ const ContactPage = () => {
     emailjs
       .send(
         "service_zqkkmzt", // replace with your actual EmailJS service ID
-        "template_xxxxxx", // replace with your actual EmailJS template ID
+        "template_59u5kro", // replace with your actual EmailJS template ID
         {
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
         },
-        "YOUR_PUBLIC_KEY" // replace with your actual EmailJS public key
+        "HGNNa-LS3vQcN2z7w" // replace with your actual EmailJS public key
       )
       .then(
         () => {
