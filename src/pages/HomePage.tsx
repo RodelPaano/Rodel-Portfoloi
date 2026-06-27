@@ -38,7 +38,7 @@ const HomePage = () => {
                   <Link to="/contact">Get in Touch</Link>
                 </Button>
                 <a
-                  href="/Rodel-Portfoloi/files/FinalRodelResume.pdf"
+                  href="/Rodel-Portfoloi/files/rodelpaano.resume.Final.pdf"
                   download="Rodel_M_Paano_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
