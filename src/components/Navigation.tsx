@@ -3,19 +3,54 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SimpleThemeToggle from "@/components/SimpleThemeToggle";
+import scrollToId from "@/lib/scrollToId";
+import useActiveSection from "@/lib/useActiveSection";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const sectionIds = ["about", "projects", "contact"];
+  const activeSection = useActiveSection(sectionIds);
+
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
-    { name: "Contact", href: "/contact" },
+    { name: "About", href: "/#about", id: "about" },
+    { name: "Projects", href: "/#projects", id: "projects" },
+    { name: "Contact", href: "/#contact", id: "contact" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (item: { href: string; id?: string }) => {
+    if (item.id) {
+      if (location.pathname !== "/") return false;
+      return activeSection === item.id;
+    }
+
+    if (location.pathname !== "/") return false;
+    return activeSection === "home";
+  };
+
+  const handleNavClick = (e: React.MouseEvent, item: { href: string; id?: string }) => {
+    e.preventDefault();
+
+    if (item.id) {
+      if (location.pathname === "/") {
+        scrollToId(item.id, 96);
+      } else {
+        navigate(item.href);
+      }
+    } else {
+      if (location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+      }
+    }
+
+    setIsOpen(false);
+  };
 
   return (
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
@@ -35,10 +70,9 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   to={item.href}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={`px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                    isActive(item.href)
-                      ? "text-primary"
-                      : "text-muted-foreground"
+                    isActive(item) ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {item.name}
@@ -77,11 +111,9 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
-                    isActive(item.href)
-                      ? "text-primary bg-accent"
-                      : "text-muted-foreground"
+                    isActive(item) ? "text-primary bg-accent" : "text-muted-foreground"
                   }`}
                 >
                   {item.name}

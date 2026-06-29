@@ -10,7 +10,7 @@ import ContactPage from "./ContactPage";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen pt-nav-height">
+    <div id="home" className="min-h-screen pt-nav-height">
       {/* Hero Section */}
       <section className="py-section px-4 sm:px-6 lg:px-8">
         <div className="max-w-content mx-auto">
@@ -178,17 +178,17 @@ const HomePage = () => {
       </section>
       
       {/* About Page */}
-      <section id="about" className="py-section">
+      <section id="about" className="scroll-mt-24 py-section">
         <AboutPage />
       </section>
 
       {/* Projects Page */}
-      <section id="projects" className="py-section bg-muted/50">
+      <section id="projects" className="scroll-mt-24 py-section bg-muted/50">
         <ProjectsPage />
       </section>
 
       
-      <section className="py-section">
+      <section id="contact" className="scroll-mt-24 py-section">
         <ContactPage />
       </section>
     </div>
