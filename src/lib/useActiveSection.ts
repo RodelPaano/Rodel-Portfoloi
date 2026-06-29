@@ -78,7 +78,7 @@ export default function useActiveSection(ids: string[], rootMargin = "-25% 0px -
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
     };
-  }, [ids.join(","), rootMargin]);
+  }, [ids, rootMargin]);
 
   return active;
 }
