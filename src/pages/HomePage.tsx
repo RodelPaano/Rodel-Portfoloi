@@ -32,13 +32,31 @@ const HomePage = () => {
 
               <div className="flex flex-wrap gap-4">
                 <Button asChild>
-                  <Link to="/projects">
+                  <a href="#projects" onClick={(e) => {
+                    e.preventDefault();
+                    const target = document.getElementById("projects");
+                    if (target) {
+                      const y = window.scrollY + target.getBoundingClientRect().top - 96;
+                      window.scrollTo({ top: y, behavior: "smooth" });
+                      window.history.pushState({}, "", "#projects");
+                    }
+                  }}>
                     View My Work
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  </a>
                 </Button>
                 <Button variant="outline" asChild>
-                  <Link to="/contact">Get in Touch</Link>
+                  <a href="#contact" onClick={(e) => {
+                    e.preventDefault();
+                    const target = document.getElementById("contact");
+                    if (target) {
+                      const y = window.scrollY + target.getBoundingClientRect().top - 96;
+                      window.scrollTo({ top: y, behavior: "smooth" });
+                      window.history.pushState({}, "", "#contact");
+                    }
+                  }}>
+                    Get in Touch
+                  </a>
                 </Button>
                 <a
                   href="/Rodel-Portfoloi/files/rodelpaano.resume.Final.pdf"
@@ -169,10 +187,18 @@ const HomePage = () => {
             projects.
           </p>
           <Button asChild size="lg">
-            <Link to="/contact">
+            <a href="#contact" onClick={(e) => {
+              e.preventDefault();
+              const target = document.getElementById("contact");
+              if (target) {
+                const y = window.scrollY + target.getBoundingClientRect().top - 96;
+                window.scrollTo({ top: y, behavior: "smooth" });
+                window.history.pushState({}, "", "#contact");
+              }
+            }}>
               Start a Conversation
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+            </a>
           </Button>
         </div>
       </section>

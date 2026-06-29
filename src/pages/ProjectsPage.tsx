@@ -9,6 +9,28 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Folder } from "lucide-react";
 
+const createProjectImage = (title: string, category: string) => {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+      <rect width="1200" height="700" rx="32" fill="#111827" />
+      <rect x="60" y="60" width="1080" height="580" rx="24" fill="#1f2937" stroke="#374151" stroke-width="4"/>
+      <rect x="100" y="110" width="320" height="180" rx="16" fill="#2563eb" />
+      <rect x="460" y="110" width="640" height="40" rx="12" fill="#f3f4f6" opacity="0.95"/>
+      <rect x="460" y="170" width="500" height="24" rx="12" fill="#9ca3af"/>
+      <rect x="100" y="340" width="240" height="24" rx="12" fill="#f9fafb"/>
+      <rect x="100" y="390" width="420" height="18" rx="9" fill="#6b7280"/>
+      <rect x="100" y="425" width="380" height="18" rx="9" fill="#6b7280"/>
+      <rect x="100" y="460" width="330" height="18" rx="9" fill="#6b7280"/>
+      <rect x="620" y="330" width="360" height="180" rx="20" fill="#0f766e"/>
+      <circle cx="800" cy="420" r="70" fill="#14b8a6" opacity="0.8"/>
+      <text x="100" y="620" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" fill="#f9fafb">${title}</text>
+      <text x="100" y="660" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#94a3b8">${category}</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
+
 const ProjectsPage = () => {
   interface Project {
     id: number;
@@ -16,6 +38,7 @@ const ProjectsPage = () => {
     description: string;
     tech: string[];
     category: string;
+    image?: string;
     github?: string;
     demo?: string;
   }
@@ -36,6 +59,10 @@ const ProjectsPage = () => {
         "Esp32",
       ],
       category: "Full Stack",
+      image: createProjectImage(
+        "Air Quality Monitoring Device with Alert System",
+        "Full Stack"
+      ),
       // github: "https://github.com/RodelPaano/",
       // demo: "#",
     },
@@ -46,6 +73,7 @@ const ProjectsPage = () => {
         "A full-featured e-commerce platform with product listings, user authentication, inventory management, and secure checkout. Built for scalability and easy admin control.",
       tech: ["React.js", "ASP.NET", "C#", "MySQL"],
       category: "Web App",
+      image: createProjectImage("Online Store Platform", "Web App"),
       // github: "https://github.com/RodelPaano/",
       // demo: "#",
     },
@@ -56,6 +84,7 @@ const ProjectsPage = () => {
         "A location-based weather simulation dashboard that visualizes forecast data using interactive charts. Tailored for Eastern Samar with real-time updates via OpenWeather API.",
       tech: ["HTML", "CSS", "Chart.js", "OpenWeather API", "JavaScript"],
       category: "Frontend",
+      image: createProjectImage("Eastern Samar Weather Simulator", "Frontend"),
       // github: "https://github.com/RodelPaano/",
       // demo: "#",
     },
@@ -66,6 +95,7 @@ const ProjectsPage = () => {
         "A booking result system that allows users to view and manage reservations. Includes admin tools for updating schedules and generating reports, with a clean UI and responsive design.",
       tech: ["PHP", "XAMPP", "CSS", "Bootstrap"],
       category: "Full Stack",
+      image: createProjectImage("Online Booking Resort", "Full Stack"),
       // github: "https://github.com/RodelPaano/",
       // demo: "https://github.com/RodelPaano/",
     },
@@ -76,6 +106,7 @@ const ProjectsPage = () => {
         "A personal portfolio site showcasing projects, skills, and contact information. Features smooth animations, responsive layout, and clean design for professional presentation.",
       tech: ["React", "TypeScript", "Framer Motion", "Netlify"],
       category: "Frontend",
+      image: createProjectImage("Portfolio Website", "Frontend"),
       // github: "https://github.com/RodelPaano/",
       // demo: "https://github.com/RodelPaano/",
     },
@@ -86,6 +117,7 @@ const ProjectsPage = () => {
         "A real-time messaging app with support for private chats, group conversations, and file sharing. Built with scalable architecture and socket-based communication.",
       tech: ["React", "Socket.io", "Node.js", "MongoDB"],
       category: "Full Stack",
+      image: createProjectImage("Chat Application", "Full Stack"),
       // github: "https://github.com/RodelPaano/",
       // demo: "https://github.com/RodelPaano/",
     },
@@ -113,8 +145,16 @@ const ProjectsPage = () => {
             {projects.map((project) => (
               <Card
                 key={project.id}
-                className="group hover:shadow-lg transition-all duration-300"
+                className="group overflow-hidden hover:shadow-lg transition-all duration-300"
               >
+                <div className="relative h-48 overflow-hidden bg-muted">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
+                </div>
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="outline">{project.category}</Badge>
