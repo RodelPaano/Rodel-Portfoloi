@@ -4,6 +4,9 @@ import { Card } from "@/components/ui/card";
 import { Github, Linkedin, Mail, ArrowRight, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 import unnamed from "@/assets/unnamed (1).jpg";
+import AboutPage from "./AboutPage";
+import ProjectsPage from "./ProjectsPage";
+import ContactPage from "./ContactPage";
 
 const HomePage = () => {
   return (
@@ -172,6 +175,21 @@ const HomePage = () => {
             </Link>
           </Button>
         </div>
+      </section>
+      
+      {/* About Page */}
+      <section id="about" className="py-section">
+        <AboutPage />
+      </section>
+
+      {/* Projects Page */}
+      <section id="projects" className="py-section bg-muted/50">
+        <ProjectsPage />
+      </section>
+
+      
+      <section className="py-section">
+        <ContactPage />
       </section>
     </div>
   );
