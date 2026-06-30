@@ -1,84 +1,113 @@
 import { useEffect, useState } from "react";
+import { ACTIVE_SECTION_EVENT, getScrollOffset } from "./scrollToId";
 
-export default function useActiveSection(ids: string[], rootMargin = "-25% 0px -25% 0px") {
+const getHashId = () => decodeURIComponent(window.location.hash.replace("#", ""));
+
+export default function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string>("home");
+  const idsKey = ids.join("|");
 
   useEffect(() => {
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+    let frameId = 0;
+    const stableIds = idsKey.split("|").filter(Boolean);
 
-    if (!elements.length) return;
+    const getElements = () =>
+      stableIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean) as HTMLElement[];
 
-    const hashId = window.location.hash.replace("#", "");
-    if (hashId && ids.includes(hashId)) {
-      setActive(hashId);
-      return;
-    }
+    const setFromHash = () => {
+      const hashId = getHashId();
+
+      if (hashId && stableIds.includes(hashId)) {
+        setActive(hashId);
+        return true;
+      }
+
+      return false;
+    };
 
     const updateActiveSection = () => {
-      if (window.scrollY < 120) {
+      frameId = 0;
+
+      if (window.scrollY < getScrollOffset()) {
         setActive("home");
         return;
       }
 
-      const viewportMid = window.innerHeight * 0.4 + window.scrollY;
-      const visibleSections = elements
-        .map((element) => {
-          const rect = element.getBoundingClientRect();
-          const top = rect.top + window.scrollY;
-          const bottom = rect.bottom + window.scrollY;
-          const visibleHeight = Math.max(0, Math.min(bottom, viewportMid + 120) - Math.max(top, viewportMid - 120));
-          const ratio = visibleHeight / Math.max(rect.height, 1);
+      const elements = getElements();
 
-          return { id: element.id, ratio, top, bottom };
-        })
-        .filter((section) => section.ratio > 0.05)
-        .sort((a, b) => b.ratio - a.ratio);
-
-      if (visibleSections.length) {
-        setActive(visibleSections[0].id);
+      if (!elements.length) {
+        setFromHash();
         return;
       }
 
-      const nearestSection = [...elements]
-        .map((element) => ({
-          id: element.id,
-          distance: Math.abs((element.getBoundingClientRect().top + window.scrollY) - viewportMid),
-        }))
-        .sort((a, b) => a.distance - b.distance)[0];
+      const navOffset = getScrollOffset();
+      const activationLine = window.scrollY + navOffset + window.innerHeight * 0.28;
 
-      if (nearestSection) {
-        setActive(nearestSection.id);
+      const currentSection = elements
+        .map((element) => {
+          const top = element.offsetTop;
+          const bottom = top + element.offsetHeight;
+
+          return {
+            id: element.id,
+            top,
+            bottom,
+            distance: Math.abs(top - activationLine),
+            containsLine: top <= activationLine && bottom > activationLine,
+          };
+        })
+        .sort((a, b) => {
+          if (a.containsLine && !b.containsLine) return -1;
+          if (!a.containsLine && b.containsLine) return 1;
+          return a.distance - b.distance;
+        })[0];
+
+      setActive(currentSection?.id ?? "home");
+    };
+
+    const scheduleUpdate = () => {
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    const handleHashOrHistoryChange = () => {
+      if (!setFromHash()) {
+        scheduleUpdate();
       }
     };
 
-    updateActiveSection();
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const handleAnnouncedSection = (event: Event) => {
+      const sectionId = (event as CustomEvent<string>).detail;
 
-        if (visibleEntries.length) {
-          setActive(visibleEntries[0].target.id);
-        } else {
-          updateActiveSection();
-        }
-      },
-      { root: null, rootMargin, threshold: [0.1, 0.25, 0.5, 0.75] }
-    );
+      if (sectionId === "home" || stableIds.includes(sectionId)) {
+        setActive(sectionId);
+      }
+    };
 
-    elements.forEach((el) => observer.observe(el));
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("resize", updateActiveSection);
+    if (!setFromHash()) {
+      scheduleUpdate();
+    }
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", handleHashOrHistoryChange);
+    window.addEventListener("popstate", handleHashOrHistoryChange);
+    window.addEventListener(ACTIVE_SECTION_EVENT, handleAnnouncedSection);
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", handleHashOrHistoryChange);
+      window.removeEventListener("popstate", handleHashOrHistoryChange);
+      window.removeEventListener(ACTIVE_SECTION_EVENT, handleAnnouncedSection);
     };
-  }, [ids, rootMargin]);
+  }, [idsKey]);
 
   return active;
 }

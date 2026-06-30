@@ -11,17 +11,55 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
-  Mail,
-  Phone,
-  MapPin,
+  Clock,
+  Facebook,
   Github,
   Linkedin,
+  Mail,
+  MapPin,
+  Phone,
   Send,
-  Facebook,
+  Sparkles,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "emailjs-com";
+
+const contactItems = [
+  {
+    label: "Email",
+    value: "rodel09paano@gmail.com",
+    icon: Mail,
+  },
+  {
+    label: "Phone",
+    value: "+63 916 114 1713",
+    icon: Phone,
+  },
+  {
+    label: "Location",
+    value: "Brgy. 02, Mercedes E. Samar",
+    icon: MapPin,
+  },
+];
+
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/RodelPaano/",
+    icon: Github,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/feed/",
+    icon: Linkedin,
+  },
+  {
+    label: "Facebook",
+    href: "https://web.facebook.com/rodelmacawile.paano",
+    icon: Facebook,
+  },
+];
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +70,7 @@ const ContactPage = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     emailjs
@@ -65,7 +103,7 @@ const ContactPage = () => {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -75,17 +113,31 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen pt-nav-height">
-      <div className="py-section px-4 sm:px-6 lg:px-8">
+      <div className="relative overflow-hidden px-4 py-section sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="home-grid-bg absolute inset-0 opacity-40" />
+          <div className="home-sweep absolute left-0 top-24 h-72 w-[34rem] rounded-full blur-3xl" />
+        </div>
+
         <div className="max-w-content mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">Get In Touch</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              I'm always interested in hearing about new opportunities, projects, or just having a conversation about technology. Feel free to reach out!
+          <div className="animate-fade-in mx-auto mb-16 max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur">
+              <Sparkles className="h-4 w-4" />
+              Let us connect
+            </div>
+            <h1 className="mb-6 text-4xl font-bold leading-tight sm:text-5xl">
+              Get In Touch
+            </h1>
+            <p className="text-lg leading-8 text-muted-foreground sm:text-xl">
+              I'm always interested in hearing about new opportunities,
+              projects, or just having a conversation about technology. Feel
+              free to reach out!
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            <Card>
+            <Card className="overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl">
+              <div className="h-1 bg-primary" />
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Send className="mr-2 h-5 w-5" />
@@ -97,7 +149,7 @@ const ContactPage = () => {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="name">Name</Label>
                       <Input
@@ -148,16 +200,16 @@ const ContactPage = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" className="group w-full">
                     Send Message
-                    <Send className="ml-2 h-4 w-4" />
+                    <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </form>
               </CardContent>
             </Card>
 
             <div className="space-y-6">
-              <Card>
+              <Card className="shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardHeader>
                   <CardTitle>Contact Information</CardTitle>
                   <CardDescription>
@@ -165,33 +217,30 @@ const ContactPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <Mail className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="font-medium">Email</p>
-                      <p className="text-muted-foreground">rodel09paano@gmail.com</p>
-                    </div>
-                  </div>
+                  {contactItems.map((item) => {
+                    const Icon = item.icon;
 
-                  <div className="flex items-center space-x-4">
-                    <Phone className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="font-medium">Phone</p>
-                      <p className="text-muted-foreground">+63 916 114 1713</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-4">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="font-medium">Location</p>
-                      <p className="text-muted-foreground">Brgy. 02, Mercedes E. Samar</p>
-                    </div>
-                  </div>
+                    return (
+                      <div
+                        key={item.label}
+                        className="flex items-center gap-4 rounded-lg border border-border bg-background p-4"
+                      >
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted">
+                          <Icon className="h-5 w-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">{item.label}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {item.value}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardHeader>
                   <CardTitle>Connect Online</CardTitle>
                   <CardDescription>
@@ -199,36 +248,39 @@ const ContactPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex space-x-4">
-                    <Button variant="outline" size="sm" asChild>
-                      <a href="https://github.com/RodelPaano/" target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" />
-                        GitHub
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="sm" asChild>
-                      <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">
-                        <Linkedin className="h-4 w-4 mr-2" />
-                        LinkedIn
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="sm" asChild>
-                      <a href="https://web.facebook.com/rodelmacawile.paano" target="_blank" rel="noopener noreferrer">
-                        <Facebook className="h-4 w-4 mr-2" />
-                        Facebook
-                      </a>
-                    </Button>
+                  <div className="flex flex-wrap gap-3">
+                    {socialLinks.map((link) => {
+                      const Icon = link.icon;
+
+                      return (
+                        <Button key={link.label} variant="outline" size="sm" asChild>
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Icon className="mr-2 h-4 w-4" />
+                            {link.label}
+                          </a>
+                        </Button>
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardHeader>
-                  <CardTitle>Response Time</CardTitle>
+                  <CardTitle className="flex items-center">
+                    <Clock className="mr-2 h-5 w-5" />
+                    Response Time
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    I typically respond to messages within 24 hours. For urgent matters, feel free to send a follow-up message or reach out via multiple channels.
+                  <p className="leading-7 text-muted-foreground">
+                    I typically respond to messages within 24 hours. For urgent
+                    matters, feel free to send a follow-up message or reach out
+                    through multiple channels.
                   </p>
                 </CardContent>
               </Card>

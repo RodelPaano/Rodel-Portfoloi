@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Folder } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Layers3, Sparkles } from "lucide-react";
 
 const createProjectImage = (title: string, category: string) => {
   const svg = `
@@ -125,15 +125,24 @@ const ProjectsPage = () => {
 
   return (
     <div className="min-h-screen pt-nav-height">
-      <div className="py-section px-4 sm:px-6 lg:px-8">
+      <div className="relative overflow-hidden px-4 py-section sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="home-grid-bg absolute inset-0 opacity-40" />
+          <div className="home-sweep absolute right-0 top-16 h-72 w-[34rem] rounded-full blur-3xl" />
+        </div>
+
         <div className="max-w-content mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6 flex items-center justify-center">
-              <Folder className="mr-4 h-10 w-10" />
+          <div className="animate-fade-in mx-auto mb-16 max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur">
+              <Sparkles className="h-4 w-4" />
+              Featured builds
+            </div>
+            <h1 className="mb-6 flex items-center justify-center text-4xl font-bold leading-tight sm:text-5xl">
+              <Layers3 className="mr-4 h-10 w-10" />
               My Projects
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg leading-8 text-muted-foreground sm:text-xl">
               Here are some of the projects I've worked on. Each one represents
               a learning experience and showcases different aspects of my
               development skills.
@@ -142,31 +151,35 @@ const ProjectsPage = () => {
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <Card
                 key={project.id}
-                className="group overflow-hidden hover:shadow-lg transition-all duration-300"
+                className="group overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="relative h-48 overflow-hidden bg-muted">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                  <Badge className="absolute left-4 top-4" variant="secondary">
+                    {project.category}
+                  </Badge>
                 </div>
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline">{project.category}</Badge>
+                    <Badge variant="outline">Project 0{index + 1}</Badge>
                     <div className="flex space-x-2">
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
                         asChild
                       >
                         <a
-                          href={project.github ?? '#'}
+                          href={project.github ?? "https://github.com/RodelPaano/"}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -176,11 +189,11 @@ const ProjectsPage = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
                         asChild
                       >
                         <a
-                          href={project.demo}
+                          href={project.demo ?? "#projects"}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -190,7 +203,9 @@ const ProjectsPage = () => {
                     </div>
                   </div>
                   <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
+                  <CardDescription className="leading-6">
+                    {project.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -206,17 +221,22 @@ const ProjectsPage = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-muted/50 rounded-lg p-12">
-            <h2 className="text-2xl font-bold mb-4">
-              Interested in Collaborating?
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              I'm always open to working on interesting projects and learning
-              from other developers. Let's build something amazing together!
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild>
-                <a href="mailto:rodel09paano@gmail.com">Get in Touch</a>
+          <div className="rounded-lg border border-border bg-card p-8 shadow-sm md:p-12">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="mb-4 text-2xl font-bold">
+                Interested in Collaborating?
+              </h2>
+              <p className="mb-8 text-muted-foreground">
+                I'm always open to working on interesting projects and learning
+                from other developers. Let's build something amazing together!
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button asChild className="group">
+                <a href="mailto:rodel09paano@gmail.com">
+                  Get in Touch
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
               </Button>
               <Button variant="outline" asChild>
                 <a

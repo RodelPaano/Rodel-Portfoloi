@@ -1,211 +1,220 @@
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Code, Coffee, Heart } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import {
+  BookOpen,
+  Code2,
+  Coffee,
+  GraduationCap,
+  Heart,
+  Laptop,
+  Rocket,
+  Sparkles,
+} from "lucide-react";
 import unnamed from "@/assets/unnamed (1).jpg";
+
+const skills = [
+  {
+    title: "Frontend",
+    icon: Code2,
+    items: ["React", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS"],
+  },
+  {
+    title: "Backend",
+    icon: Laptop,
+    items: ["Node.js", "ASP.NET/C#", "Express", "PHP/Laravel", "Java", "C++"],
+  },
+  {
+    title: "Database",
+    icon: BookOpen,
+    items: ["MySQL", "MongoDB", "Firebase", "SQL Server"],
+  },
+  {
+    title: "Tools",
+    icon: Rocket,
+    items: ["Git", "GitHub", "VS Code", "Postman", "Figma", "NPM"],
+  },
+];
+
+const timeline = [
+  {
+    title: "Bachelor of Science in Information Technology",
+    meta: "Eastern Samar State University, Guiuan - 2020-2024",
+    description:
+      "Built a broad foundation in software, systems, networking, databases, and technology problem solving.",
+  },
+  {
+    title: "Aspiring Software Developer",
+    meta: "Currently growing through projects and daily practice",
+    description:
+      "Developing full-stack web applications, learning backend architecture, and improving with modern AI-assisted workflows.",
+  },
+];
+
+const interests = [
+  {
+    title: "Coffee Enthusiast",
+    icon: Coffee,
+    description: "Taking breaks, thinking through ideas, and refueling for the next build.",
+  },
+  {
+    title: "Project Builder",
+    icon: Code2,
+    description: "Turning practice into real systems that sharpen my development skills.",
+  },
+  {
+    title: "Continuous Learning",
+    icon: GraduationCap,
+    description: "Exploring new tools, better patterns, and stronger ways to solve problems.",
+  },
+];
 
 const AboutPage = () => {
   return (
     <div className="min-h-screen pt-nav-height">
-      <div className="py-section px-4 sm:px-6 lg:px-8">
-        <div className="max-w-content mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">About Me</h1>
+      <div className="relative overflow-hidden px-4 py-section sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="home-grid-bg absolute inset-0 opacity-50" />
+          <div className="home-sweep absolute left-1/3 top-20 h-72 w-[34rem] rounded-full blur-3xl" />
+        </div>
 
-            {/* Profile Image */}
-            <div className="flex justify-center">
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-border">
-                <img
-                  src={unnamed}
-                  alt="Rodel - Software Developer"
-                  className="w-full h-full object-cover"
-                />
+        <div className="max-w-content mx-auto">
+          <div className="animate-fade-in mb-16 grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+            <div className="flex justify-center lg:justify-start">
+              <div className="relative">
+                <div className="home-orbit absolute inset-3 rounded-full border border-dashed border-primary/30" />
+                <div className="relative h-44 w-44 overflow-hidden rounded-full border-4 border-background shadow-2xl ring-1 ring-border sm:h-56 sm:w-56">
+                  <img
+                    src={unnamed}
+                    alt="Rodel - Software Developer"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
             </div>
 
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mt-6">
-              I'm an aspiring software developer with a deep desire to learn,
-              grow, and someday be part of the tech industry. I'm passionate
-              about building creative solutions and continuously exploring new
-              technologies. Here's a glimpse into my journey and the dreams that
-              keep me going.
-            </p>
+            <div className="text-center lg:text-left">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur">
+                <Sparkles className="h-4 w-4" />
+                About my journey
+              </div>
+              <h1 className="mb-6 text-4xl font-bold leading-tight sm:text-5xl">
+                Learning, building, and growing as a developer.
+              </h1>
+              <p className="mx-auto max-w-3xl text-lg leading-8 text-muted-foreground lg:mx-0">
+                I am an aspiring software developer with a deep desire to learn,
+                grow, and someday be part of the tech industry. I enjoy building
+                creative solutions, exploring modern technologies, and improving
+                one project at a time.
+              </p>
+            </div>
           </div>
 
-          {/* Bio Section */}
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            <div>
-              <h2 className="text-2xl font-bold mb-6 flex items-center">
-                <Code className="mr-3 h-6 w-6" />
+          <div className="mb-16 grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <Card className="p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8">
+              <h2 className="mb-6 flex items-center text-2xl font-bold">
+                <Code2 className="mr-3 h-6 w-6" />
                 My Story
               </h2>
-              <div className="space-y-4 text-muted-foreground">
+              <div className="space-y-4 leading-7 text-muted-foreground">
                 <p>
-                  As a student, I began my journey into software development out
-                  of pure curiosity—wondering how things really work behind the
-                  scenes. What started as a simple interest slowly grew into a
-                  passion, especially as I discovered how powerful code can be
-                  in solving real-world problems. I'm still learning, still
-                  growing, and working hard to someday be part of something
-                  meaningful in the tech world.
+                  I started software development from curiosity, wondering how
+                  systems work behind the scenes. That curiosity became a real
+                  passion when I saw how code can solve practical problems.
                 </p>
                 <p>
-                  As a student and aspiring developer, I started my journey by
-                  building web-based systems that helped me understand how
-                  things work behind the scenes. I naturally gravitated toward
-                  backend development, where I enjoy designing secure, scalable
-                  logic and solving real-world problems through code. While
-                  backend remains my favorite, I'm also exploring mobile
-                  development using React Native to expand my skills and create
-                  more versatile solutions. Every project I work on is a step
-                  forward in learning and growth.
+                  I naturally enjoy backend development because it involves
+                  logic, structure, security, and real problem solving. At the
+                  same time, I keep improving my frontend skills so I can build
+                  complete, useful, and polished applications.
                 </p>
                 <p>
-                  Most of my days are spent coding—it's something I genuinely
-                  enjoy and make time for every day. When I'm not deep in code,
-                  I’m usually exploring new technologies, experimenting with
-                  ideas, or simply taking a break with a good cup of coffee
-                  while thinking about my next project. I'm always looking for
-                  ways to improve and grow as a developer.
+                  Most days, I spend time coding, studying, testing ideas, or
+                  improving a project. Every build is another step forward.
                 </p>
               </div>
-            </div>
+            </Card>
 
-            <div>
-              <h2 className="text-2xl font-bold mb-6 flex items-center">
+            <div className="space-y-4">
+              <h2 className="mb-6 flex items-center text-2xl font-bold">
                 <GraduationCap className="mr-3 h-6 w-6" />
                 Education & Experience
               </h2>
-              <div className="space-y-6">
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-2">
-                    Bachelor Of Science Information Technology
-                  </h3>
-                  <p className="text-muted-foreground mb-2">
-                    Eastern Samar State University GUIUAN E. Samar • 2020-2024
+              {timeline.map((item, index) => (
+                <Card
+                  key={item.title}
+                  className="group relative overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="absolute left-0 top-0 h-full w-1 bg-primary/80" />
+                  <p className="mb-3 text-sm font-semibold text-muted-foreground">
+                    0{index + 1}
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    Not all IT-related work is focused on software engineering,
-                    algorithms, or data structures — the field includes a wide
-                    range of areas like networking, cybersecurity, technical
-                    support, cloud infrastructure, and system administration.
+                  <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
+                  <p className="mb-3 text-sm text-muted-foreground">
+                    {item.meta}
                   </p>
-                </Card>
-
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-2">
-                    Software Developer
-                  </h3>
-                  <p className="text-muted-foreground mb-2">
-                    CURRENTLY • 4th Student in ESSU GUIUAN
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Developing full-stack Web Application and System with
-                    Collaboration AI Tolls to Make Fast Development.
+                  <p className="text-sm leading-6 text-muted-foreground">
+                    {item.description}
                   </p>
                 </Card>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Skills Section */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center">
-              Technical Skills
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-6">
-                <h3 className="font-semibold text-lg mb-4">Frontend</h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "React",
-                    "TypeScript",
-                    "JavaScript",
-                    "HTML/CSS",
-                    "Tailwind CSS",
-                  ].map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
+            <div className="mb-8 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                Skill Set
+              </p>
+              <h2 className="text-3xl font-bold">Technical Skills</h2>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {skills.map((group) => {
+                const Icon = group.icon;
 
-              <Card className="p-6">
-                <h3 className="font-semibold text-lg mb-4">Backend</h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Node.js",
-                    "ASP.NET/C#",
-                    "Express",
-                    "PHP/LARAVEL",
-                    "JAVA",
-                    "C++",
-                  ].map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold text-lg mb-4">Database</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["MySql", "MongoDB", "Firebase", "SQLServer"].map(
-                    (skill) => (
-                      <Badge key={skill} variant="secondary">
-                        {skill}
-                      </Badge>
-                    )
-                  )}
-                </div>
-              </Card>
-
-              <Card className="p-6">
-                <h3 className="font-semibold text-lg mb-4">Tools & Others</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["Git", "GitHub", "VS-Code", "PostMan", "Figma", "NPM"].map(
-                    (skill) => (
-                      <Badge key={skill} variant="secondary">
-                        {skill}
-                      </Badge>
-                    )
-                  )}
-                </div>
-              </Card>
+                return (
+                  <Card
+                    key={group.title}
+                    className="group p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                  >
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mb-4 text-lg font-semibold">{group.title}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((skill) => (
+                        <Badge key={skill} variant="secondary">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           </div>
 
-          {/* Personal Interests */}
           <div className="text-center">
-            <h2 className="text-2xl font-bold mb-8 flex items-center justify-center">
+            <h2 className="mb-8 flex items-center justify-center text-2xl font-bold">
               <Heart className="mr-3 h-6 w-6" />
-              When I'm Not Coding
+              When I am Not Coding
             </h2>
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <Card className="p-6 text-center">
-                <Coffee className="h-8 w-8 mx-auto mb-4 text-primary" />
-                <h3 className="font-semibold mb-2">Coffee Enthusiast</h3>
-                <p className="text-sm text-muted-foreground">
-                  Exploring different brewing methods and coffee origins.
-                </p>
-              </Card>
+            <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+              {interests.map((interest) => {
+                const Icon = interest.icon;
 
-              <Card className="p-6 text-center">
-                <Code className="h-8 w-8 mx-auto mb-4 text-primary" />
-                <h3 className="font-semibold mb-2">Open Source</h3>
-                <p className="text-sm text-muted-foreground">
-                  Contributing to projects and learning from the community.
-                </p>
-              </Card>
-
-              <Card className="p-6 text-center">
-                <GraduationCap className="h-8 w-8 mx-auto mb-4 text-primary" />
-                <h3 className="font-semibold mb-2">Continuous Learning</h3>
-                <p className="text-sm text-muted-foreground">
-                  Always exploring new technologies and best practices.
-                </p>
-              </Card>
+                return (
+                  <Card
+                    key={interest.title}
+                    className="p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                  >
+                    <Icon className="mx-auto mb-4 h-8 w-8 text-primary" />
+                    <h3 className="mb-2 font-semibold">{interest.title}</h3>
+                    <p className="text-sm leading-6 text-muted-foreground">
+                      {interest.description}
+                    </p>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </div>
