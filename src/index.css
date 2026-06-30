@@ -89,6 +89,77 @@
   will-change: transform, opacity;
 }
 
+.home-grid-bg {
+  background-image:
+    linear-gradient(to right, hsl(var(--border) / 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.55) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, black, transparent 72%);
+  mask-image: radial-gradient(circle at 50% 0%, black, transparent 72%);
+}
+
+.home-sweep {
+  background:
+    radial-gradient(circle, hsl(var(--primary) / 0.1), transparent 65%),
+    radial-gradient(circle at 75% 40%, hsl(var(--muted-foreground) / 0.1), transparent 55%);
+  animation: home-drift 9s ease-in-out infinite alternate;
+}
+
+.home-profile-glow {
+  background: hsl(var(--primary) / 0.12);
+  animation: home-pulse 4.5s ease-in-out infinite;
+}
+
+.home-orbit {
+  animation: home-spin 18s linear infinite;
+}
+
+.home-float-card {
+  animation: home-float 5s ease-in-out infinite;
+}
+
+.home-code-card {
+  animation: home-float 5.8s ease-in-out infinite reverse;
+}
+
+.home-progress {
+  animation: home-progress 2.8s ease-in-out infinite;
+  transform-origin: left;
+}
+
+.animate-rise-delay-1,
+.animate-rise-delay-2,
+.animate-rise-delay-3 {
+  animation: home-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.animate-rise-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.animate-rise-delay-3 {
+  animation-delay: 0.36s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-sweep,
+  .home-profile-glow,
+  .home-orbit,
+  .home-float-card,
+  .home-code-card,
+  .home-progress,
+  .animate-rise-delay-1,
+  .animate-rise-delay-2,
+  .animate-rise-delay-3,
+  .page-transition {
+    animation: none;
+  }
+}
+
 @keyframes page-fade-slide {
   0% {
     opacity: 0;
@@ -97,5 +168,63 @@
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes home-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes home-drift {
+  0% {
+    transform: translate(-52%, -6%) scale(0.95);
+  }
+  100% {
+    transform: translate(-48%, 4%) scale(1.08);
+  }
+}
+
+@keyframes home-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes home-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes home-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes home-progress {
+  0%,
+  100% {
+    transform: scaleX(0.35);
+  }
+  50% {
+    transform: scaleX(1);
   }
 }
