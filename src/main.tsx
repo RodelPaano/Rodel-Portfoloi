@@ -1,22 +1,19 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 
-const rootElement = document.getElementById("root");
+const routes = [
+  { path: "/", element: <App /> },
+];
 
-if (!rootElement) {
-  throw new Error("Root element not found");
-}
+const router = createHashRouter(routes, {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true,
+  },
+});
 
-const basename =
-  import.meta.env.BASE_URL === "/" ? undefined : import.meta.env.BASE_URL;
-
-createRoot(rootElement).render(
-  <StrictMode>
-    <BrowserRouter basename={basename}>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
+createRoot(document.getElementById("root")!).render(
+  <RouterProvider router={router} />
 );
