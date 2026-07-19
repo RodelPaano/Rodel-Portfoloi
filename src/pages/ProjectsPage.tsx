@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -7,122 +8,299 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, ExternalLink, Github, Layers3, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Github, Layers3, Sparkles } from "lucide-react";
 
-const createProjectImage = (title: string, category: string) => {
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
-      <rect width="1200" height="700" rx="32" fill="#111827" />
-      <rect x="60" y="60" width="1080" height="580" rx="24" fill="#1f2937" stroke="#374151" stroke-width="4"/>
-      <rect x="100" y="110" width="320" height="180" rx="16" fill="#2563eb" />
-      <rect x="460" y="110" width="640" height="40" rx="12" fill="#f3f4f6" opacity="0.95"/>
-      <rect x="460" y="170" width="500" height="24" rx="12" fill="#9ca3af"/>
-      <rect x="100" y="340" width="240" height="24" rx="12" fill="#f9fafb"/>
-      <rect x="100" y="390" width="420" height="18" rx="9" fill="#6b7280"/>
-      <rect x="100" y="425" width="380" height="18" rx="9" fill="#6b7280"/>
-      <rect x="100" y="460" width="330" height="18" rx="9" fill="#6b7280"/>
-      <rect x="620" y="330" width="360" height="180" rx="20" fill="#0f766e"/>
-      <circle cx="800" cy="420" r="70" fill="#14b8a6" opacity="0.8"/>
-      <text x="100" y="620" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" fill="#f9fafb">${title}</text>
-      <text x="100" y="660" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#94a3b8">${category}</text>
-    </svg>
-  `;
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  tech: string[];
+  category: string;
+  images?: string[];
+  github?: string;
+  demo?: string;
+}
 
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+const getImageUrl = (path: string) => {
+  if (path.startsWith("data:") || path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+  // Strip leading slash if any
+  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${cleanPath}`;
+};
+
+const projects: Project[] = [
+  {
+    id: 1,
+    title: "Air Quality Monitoring Device with Alert System",
+    description:
+      "An IoT-enabled system that tracks air quality metrics in real time and sends alerts when pollution levels exceed safe thresholds. Includes a dashboard for data visualization and device management.",
+    tech: [
+      "React",
+      "Node.js",
+      "Firebase",
+      "Express.js",
+      "PlatformIO",
+      "c++",
+      "Esp32",
+    ],
+    category: "Full Stack",
+    images: [
+      "Images/air-quality-1.png",
+      "Images/air-quality-2.png",
+    ],
+    // github: "https://github.com/RodelPaano/",
+    // demo: "#",
+  },
+  {
+    id: 2,
+    title: "Online Store Platform",
+    description:
+      "A full-featured e-commerce platform with product listings, user authentication, inventory management, and secure checkout. Built for scalability and easy admin control.",
+    tech: ["React.js", "ASP.NET", "C#", "MySQL"],
+    category: "Web App",
+    images: [
+      "Images/online-store-1.png",
+      "Images/online-store-2.png",
+    ],
+    // github: "https://github.com/RodelPaano/",
+    // demo: "#",
+  },
+  {
+    id: 3,
+    title: "Eastern Samar Weather Simulator",
+    description:
+      "A location-based weather simulation dashboard that visualizes forecast data using interactive charts. Tailored for Eastern Samar with real-time updates via OpenWeather API.",
+    tech: ["HTML", "CSS", "Chart.js", "OpenWeather API", "JavaScript"],
+    category: "Frontend",
+    images: [
+      "Images/weather-simulator-1.svg",
+      "Images/weather-simulator-2.svg",
+    ],
+    // github: "https://github.com/RodelPaano/",
+    // demo: "#",
+  },
+  {
+    id: 4,
+    title: "Online Booking Resort",
+    description:
+      "A booking result system that allows users to view and manage reservations. Includes admin tools for updating schedules and generating reports, with a clean UI and responsive design.",
+    tech: ["PHP", "XAMPP", "CSS", "Bootstrap"],
+    category: "Full Stack",
+    images: [
+      "Images/booking-resort-1.png",
+      "Images/booking-resort-2.png",
+    ],
+    // github: "https://github.com/RodelPaano/",
+    // demo: "https://github.com/RodelPaano/",
+  },
+  {
+    id: 5,
+    title: "Portfolio Website",
+    description:
+      "A personal portfolio site showcasing projects, skills, and contact information. Features smooth animations, responsive layout, and clean design for professional presentation.",
+    tech: ["React", "TypeScript", "Framer Motion", "Netlify"],
+    category: "Frontend",
+    images: [
+      "Images/Portfolio1.png",
+      "Images/Portfolio2.png",
+    ],
+    // github: "https://github.com/RodelPaano/",
+    // demo: "https://github.com/RodelPaano/",
+  },
+  {
+    id: 6,
+    title: "Chat Application",
+    description:
+      "A real-time messaging app with support for private chats, group conversations, and file sharing. Built with scalable architecture and socket-based communication.",
+    tech: ["React", "Socket.io", "Node.js", "MongoDB"],
+    category: "Full Stack",
+    images: [
+      "Images/chat-app-1.svg",
+      "Images/chat-app-2.svg",
+    ],
+    // github: "https://github.com/RodelPaano/",
+    // demo: "https://github.com/RodelPaano/",
+  },
+];
+
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+}
+
+const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+
+  // Automatically cycle images every 20 seconds.
+  // Re-runs and resets interval when activeIndex changes to prevent immediate switching on manual click.
+  useEffect(() => {
+    if (!project.images || project.images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % project.images!.length);
+    }, 20000);
+
+    return () => clearInterval(interval);
+  }, [activeIndex, project.images]);
+
+  const nextImage = () => {
+    if (!project.images) return;
+    setActiveIndex((prev) => (prev + 1) % project.images!.length);
+  };
+
+  const prevImage = () => {
+    if (!project.images) return;
+    setActiveIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart({
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY,
+    });
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart || !project.images || project.images.length <= 1) return;
+    const touchEnd = {
+      x: e.changedTouches[0].clientX,
+      y: e.changedTouches[0].clientY,
+    };
+
+    const diffX = touchStart.x - touchEnd.x;
+    const diffY = touchStart.y - touchEnd.y;
+
+    // Trigger swipe if horizontal drag is dominant and above 50px threshold
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+      if (diffX > 0) {
+        nextImage();
+      } else {
+        prevImage();
+      }
+    }
+    setTouchStart(null);
+  };
+
+  return (
+    <Card
+      className="group overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+      style={{ animationDelay: `${index * 80}ms` }}
+    >
+      <div
+        className="relative h-48 overflow-hidden bg-muted cursor-grab active:cursor-grabbing select-none"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {project.images && project.images.length > 0 && (
+          <img
+            src={getImageUrl(project.images[activeIndex])}
+            alt={`${project.title} preview ${activeIndex + 1}`}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            draggable="false"
+          />
+        )}
+
+        {project.images && project.images.length > 1 && (
+          <>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background"
+              onClick={(e) => {
+                e.stopPropagation();
+                prevImage();
+              }}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span className="sr-only">Previous image</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background"
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
+            >
+              <ArrowRight className="h-4 w-4" />
+              <span className="sr-only">Next image</span>
+            </Button>
+
+            {/* Indicator dots for multiple images */}
+            <div className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 flex space-x-1.5 bg-black/30 px-2 py-1 rounded-full backdrop-blur-sm">
+              {project.images.map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-1.5 w-1.5 rounded-full transition-all ${i === activeIndex ? "bg-white w-3" : "bg-white/50"
+                    }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent pointer-events-none" />
+        <Badge className="absolute left-4 top-4" variant="secondary">
+          {project.category}
+        </Badge>
+      </div>
+      <CardHeader>
+        <div className="flex items-center justify-between mb-2">
+          <Badge variant="outline">Project 0{index + 1}</Badge>
+          <div className="flex space-x-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
+              asChild
+            >
+              <a
+                href={project.github ?? "https://github.com/RodelPaano/"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
+              asChild
+            >
+              <a
+                href={project.demo ?? "#projects"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+        <CardTitle className="text-xl">{project.title}</CardTitle>
+        <CardDescription className="leading-6">
+          {project.description}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-wrap gap-2">
+          {project.tech.map((tech) => (
+            <Badge key={tech} variant="secondary" className="text-xs">
+              {tech}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
 };
 
 const ProjectsPage = () => {
-  interface Project {
-    id: number;
-    title: string;
-    description: string;
-    tech: string[];
-    category: string;
-    image?: string;
-    github?: string;
-    demo?: string;
-  }
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Air Quality Monitoring Device with Alert System",
-      description:
-        "An IoT-enabled system that tracks air quality metrics in real time and sends alerts when pollution levels exceed safe thresholds. Includes a dashboard for data visualization and device management.",
-      tech: [
-        "React",
-        "Node.js",
-        "Firebase",
-        "Express.js",
-        "PlatformIO",
-        "c++",
-        "Esp32",
-      ],
-      category: "Full Stack",
-      image: createProjectImage(
-        "Air Quality Monitoring Device with Alert System",
-        "Full Stack"
-      ),
-      // github: "https://github.com/RodelPaano/",
-      // demo: "#",
-    },
-    {
-      id: 2,
-      title: "Online Store Platform",
-      description:
-        "A full-featured e-commerce platform with product listings, user authentication, inventory management, and secure checkout. Built for scalability and easy admin control.",
-      tech: ["React.js", "ASP.NET", "C#", "MySQL"],
-      category: "Web App",
-      image: createProjectImage("Online Store Platform", "Web App"),
-      // github: "https://github.com/RodelPaano/",
-      // demo: "#",
-    },
-    {
-      id: 3,
-      title: "Eastern Samar Weather Simulator",
-      description:
-        "A location-based weather simulation dashboard that visualizes forecast data using interactive charts. Tailored for Eastern Samar with real-time updates via OpenWeather API.",
-      tech: ["HTML", "CSS", "Chart.js", "OpenWeather API", "JavaScript"],
-      category: "Frontend",
-      image: createProjectImage("Eastern Samar Weather Simulator", "Frontend"),
-      // github: "https://github.com/RodelPaano/",
-      // demo: "#",
-    },
-    {
-      id: 4,
-      title: "Online Booking Resort",
-      description:
-        "A booking result system that allows users to view and manage reservations. Includes admin tools for updating schedules and generating reports, with a clean UI and responsive design.",
-      tech: ["PHP", "XAMPP", "CSS", "Bootstrap"],
-      category: "Full Stack",
-      image: createProjectImage("Online Booking Resort", "Full Stack"),
-      // github: "https://github.com/RodelPaano/",
-      // demo: "https://github.com/RodelPaano/",
-    },
-    {
-      id: 5,
-      title: "Portfolio Website",
-      description:
-        "A personal portfolio site showcasing projects, skills, and contact information. Features smooth animations, responsive layout, and clean design for professional presentation.",
-      tech: ["React", "TypeScript", "Framer Motion", "Netlify"],
-      category: "Frontend",
-      image: createProjectImage("Portfolio Website", "Frontend"),
-      // github: "https://github.com/RodelPaano/",
-      // demo: "https://github.com/RodelPaano/",
-    },
-    {
-      id: 6,
-      title: "Chat Application",
-      description:
-        "A real-time messaging app with support for private chats, group conversations, and file sharing. Built with scalable architecture and socket-based communication.",
-      tech: ["React", "Socket.io", "Node.js", "MongoDB"],
-      category: "Full Stack",
-      image: createProjectImage("Chat Application", "Full Stack"),
-      // github: "https://github.com/RodelPaano/",
-      // demo: "https://github.com/RodelPaano/",
-    },
-  ];
-
   return (
     <div className="min-h-screen pt-nav-height">
       <div className="relative overflow-hidden px-4 py-section sm:px-6 lg:px-8">
@@ -152,71 +330,7 @@ const ProjectsPage = () => {
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {projects.map((project, index) => (
-              <Card
-                key={project.id}
-                className="group overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <div className="relative h-48 overflow-hidden bg-muted">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <Badge className="absolute left-4 top-4" variant="secondary">
-                    {project.category}
-                  </Badge>
-                </div>
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline">Project 0{index + 1}</Badge>
-                    <div className="flex space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
-                        asChild
-                      >
-                        <a
-                          href={project.github ?? "https://github.com/RodelPaano/"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4" />
-                        </a>
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
-                        asChild
-                      >
-                        <a
-                          href={project.demo ?? "#projects"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription className="leading-6">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
 
