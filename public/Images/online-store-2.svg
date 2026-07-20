@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+      <defs>
+        <linearGradient id="store2-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0f172a" />
+          <stop offset="100%" stop-color="#1e1b4b" />
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="700" rx="24" fill="url(#store2-bg)" />
+      <!-- Browser Frame -->
+      <rect x="50" y="50" width="1100" height="600" rx="16" fill="#1e293b" stroke="#334155" stroke-width="3" />
+      <circle cx="90" cy="90" r="10" fill="#ef4444" />
+      <circle cx="120" cy="90" r="10" fill="#eab308" />
+      <circle cx="150" cy="90" r="10" fill="#22c55e" />
+      <rect x="190" y="75" width="600" height="30" rx="15" fill="#0f172a" />
+      <text x="210" y="96" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">https://mystore.com/checkout</text>
+      <!-- Checkout Content -->
+      <text x="90" y="170" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="32">Secure Checkout</text>
+      <!-- Form Panel -->
+      <rect x="90" y="210" width="600" height="400" rx="12" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <text x="120" y="255" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="20">Shipping Address</text>
+      <!-- Form Inputs -->
+      <rect x="120" y="280" width="260" height="45" rx="6" fill="#1e293b" stroke="#475569" />
+      <text x="135" y="308" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="14">First Name</text>
+      <rect x="400" y="280" width="260" height="45" rx="6" fill="#1e293b" stroke="#475569" />
+      <text x="415" y="308" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="14">Last Name</text>
+      <rect x="120" y="350" width="540" height="45" rx="6" fill="#1e293b" stroke="#475569" />
+      <text x="135" y="378" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="14">Street Address</text>
+      <text x="120" y="440" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="20">Payment Details</text>
+      <rect x="120" y="465" width="540" height="45" rx="6" fill="#1e293b" stroke="#7c3aed" stroke-width="2" />
+      <text x="135" y="493" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="14">4242 •••• •••• 4242</text>
+      <rect x="120" y="530" width="260" height="45" rx="6" fill="#1e293b" stroke="#475569" />
+      <text x="135" y="558" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="14">MM / YY</text>
+      <rect x="400" y="530" width="260" height="45" rx="6" fill="#1e293b" stroke="#475569" />
+      <text x="415" y="558" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="14">CVC</text>
+      <!-- Summary Panel -->
+      <rect x="720" y="210" width="390" height="400" rx="12" fill="#1e1b4b" stroke="#4c1d95" stroke-width="2" />
+      <text x="750" y="255" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="22">Order Summary</text>
+      <text x="750" y="310" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">Smart Watch V2</text>
+      <text x="1030" y="310" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="16">$199.99</text>
+      <text x="750" y="350" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">Wireless Headset</text>
+      <text x="1030" y="350" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="16">$149.50</text>
+      <line x1="750" y1="390" x2="1080" y2="390" stroke="#3b0764" stroke-width="2" />
+      <text x="750" y="430" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">Shipping</text>
+      <text x="1030" y="430" fill="#22c55e" font-family="Segoe UI, sans-serif" font-size="16">FREE</text>
+      <text x="750" y="470" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">Estimated Taxes</text>
+      <text x="1030" y="470" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="16">$27.96</text>
+      <line x1="750" y1="500" x2="1080" y2="500" stroke="#3b0764" stroke-width="2" />
+      <text x="750" y="540" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="20">Total</text>
+      <text x="1010" y="540" fill="#a78bfa" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="24">$377.45</text>
+      <rect x="750" y="560" width="330" height="38" rx="6" fill="#7c3aed" />
+      <text x="860" y="584" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="16">Pay $377.45</text>
+    </svg>

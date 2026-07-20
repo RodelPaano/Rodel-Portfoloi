@@ -1,10 +1,19 @@
 import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router-dom"; // ✅ use HashRouter for GitHub Pages
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 
+const routes = [
+  { path: "/", element: <App /> },
+];
+
+const router = createHashRouter(routes, {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true,
+  },
+});
+
 createRoot(document.getElementById("root")!).render(
-  <HashRouter>
-    <App />
-  </HashRouter>
+  <RouterProvider router={router} />
 );

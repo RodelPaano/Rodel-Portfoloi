@@ -4,15 +4,19 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/Rodel-Portfoloi/",
+  base: "/",
   server: {
     host: "::",
     port: 8080,
   },
-  plugins: [react()], // Tanggal na ang componentTagger
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  optimizeDeps: {
+    force: true,
+    include: ["@emailjs/browser"],
   },
 });

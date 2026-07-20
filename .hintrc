@@ -17,5 +17,13 @@
         ]
       }
     ]
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not chrome <= 112",
+    "not edge <= 141",
+    "not opera <= 122",
+    "not samsung <= 28"
+  ]
 }
