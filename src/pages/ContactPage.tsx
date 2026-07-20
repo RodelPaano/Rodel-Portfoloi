@@ -24,7 +24,11 @@ import {
 } from "lucide-react";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "service_4we0eg3";
+const EMAILJS_TEMPLATE_ID = "template_yl1h69o";
+const EMAILJS_PUBLIC_KEY = "nni2XZkcv_3yF9Qvo";
 
 const contactItems = [
   {
@@ -78,15 +82,15 @@ const ContactPage = () => {
 
     emailjs
       .send(
-        "service_qg200zp",
-        "service_qg200zp",
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
         },
-        "HGNNa-LS3vQcN2z7w"
+        EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {
@@ -162,6 +166,7 @@ const ContactPage = () => {
                         <Input
                           id="name"
                           name="name"
+                          autoComplete="name"
                           value={formData.name}
                           onChange={handleChange}
                           required
@@ -175,6 +180,7 @@ const ContactPage = () => {
                           id="email"
                           name="email"
                           type="email"
+                          autoComplete="email"
                           value={formData.email}
                           onChange={handleChange}
                           required
@@ -189,6 +195,7 @@ const ContactPage = () => {
                       <Input
                         id="subject"
                         name="subject"
+                        autoComplete="off"
                         value={formData.subject}
                         onChange={handleChange}
                         required
@@ -202,6 +209,7 @@ const ContactPage = () => {
                       <Textarea
                         id="message"
                         name="message"
+                        autoComplete="off"
                         value={formData.message}
                         onChange={handleChange}
                         required

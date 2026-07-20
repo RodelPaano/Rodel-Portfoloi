@@ -9,10 +9,14 @@ export default defineConfig({
     host: "::",
     port: 8080,
   },
-  plugins: [react()], // Tanggal na ang componentTagger
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  optimizeDeps: {
+    force: true,
+    include: ["@emailjs/browser"],
   },
 });

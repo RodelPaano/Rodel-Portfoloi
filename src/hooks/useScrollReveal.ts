@@ -7,7 +7,7 @@ type ScrollRevealOptions = {
 };
 
 const useScrollReveal = (options: ScrollRevealOptions = {}) => {
-  const { threshold = 0.15, rootMargin = "0px 0px -60px 0px", once = true } = options;
+  const { threshold = 0.12, rootMargin = "0px 0px -50px 0px", once = true } = options;
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 

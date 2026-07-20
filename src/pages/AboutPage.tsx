@@ -90,7 +90,7 @@ const AboutPage = () => {
               <div className="perspective-container">
                 <div className="profile-3d relative">
                   <div className="home-orbit absolute inset-3 rounded-full border border-dashed border-primary/30" />
-                  <div className="relative h-44 w-44 overflow-hidden rounded-full border-4 border-background shadow-2xl ring-1 ring-border sm:h-56 sm:w-56 transition-all duration-500 hover:shadow-primary/20">
+                  <div className="relative h-44 w-44 overflow-hidden rounded-full border-4 border-background shadow-2xl ring-1 ring-border sm:h-56 sm:w-56 transition-all duration-500 ease-out hover:shadow-primary/20">
                     <img
                       src={unnamed}
                       alt="Rodel - Software Developer"
@@ -102,7 +102,7 @@ const AboutPage = () => {
             </div>
 
             <div className={`text-center lg:text-left ${headerRef.isVisible ? 'reveal-right' : ''}`}>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur transition-all duration-500 hover:shadow-md">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur transition-all duration-500 ease-out hover:shadow-md">
                 <Sparkles className="h-4 w-4" />
                 About my journey
               </div>
@@ -119,7 +119,7 @@ const AboutPage = () => {
           </div>
 
           <div ref={storyRef.ref} className={`mb-16 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] ${storyRef.isVisible ? 'active' : ''}`}>
-            <Card className={`p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8 ${storyRef.isVisible ? 'reveal' : ''}`}>
+            <Card className={`p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl sm:p-8 ${storyRef.isVisible ? 'reveal' : ''}`}>
               <h2 className="mb-6 flex items-center text-2xl font-bold">
                 <Code2 className="mr-3 h-6 w-6" />
                 My Story
@@ -148,11 +148,11 @@ const AboutPage = () => {
                 <GraduationCap className="mr-3 h-6 w-6" />
                 Education & Experience
               </h2>
-              {timeline.map((item, index) => (
+               {timeline.map((item, index) => (
                 <TiltCard
                   key={item.title}
                   maxTilt={5}
-                  className="card-3d card-3d-shine group relative overflow-hidden rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="card-3d card-3d-shine group relative overflow-hidden rounded-lg border border-border bg-card p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="absolute left-0 top-0 h-full w-1 bg-primary/80" />
                   <p className="mb-3 text-sm font-semibold text-muted-foreground">
@@ -185,9 +185,9 @@ const AboutPage = () => {
                   <TiltCard
                     key={group.title}
                     maxTilt={8}
-                    className="card-3d card-3d-shine rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                    className="card-3d card-3d-shine rounded-lg border border-border bg-card p-6 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl"
                   >
-                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-muted transition-all duration-300 ease-out group-hover:bg-primary group-hover:text-primary-foreground">
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="mb-4 text-lg font-semibold">{group.title}</h3>
@@ -217,7 +217,7 @@ const AboutPage = () => {
                   <TiltCard
                     key={interest.title}
                     maxTilt={6}
-                    className="card-3d card-3d-shine rounded-lg border border-border bg-card p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                    className="card-3d card-3d-shine rounded-lg border border-border bg-card p-6 text-center transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl"
                   >
                     <Icon className="mx-auto mb-4 h-8 w-8 text-primary" />
                     <h3 className="mb-2 font-semibold">{interest.title}</h3>

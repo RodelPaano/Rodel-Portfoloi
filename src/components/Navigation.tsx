@@ -58,7 +58,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/80 shadow-sm backdrop-blur-xl">
+    <nav className="fixed top-0 z-50 w-full border-b border-border bg-background shadow-sm">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-nav-height">
           {/* Logo */}
@@ -76,8 +76,8 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-baseline space-x-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -86,42 +86,39 @@ const Navigation = () => {
                   className={`relative rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-accent hover:text-primary ${
                     isActive(item)
                       ? "bg-accent text-primary"
-                      : "text-muted-foreground"
+                      : "text-foreground"
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
             </div>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-2">
             <SimpleThemeToggle />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="flex md:hidden items-center gap-2">
             <SimpleThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="rounded-full w-9 h-9 border border-border"
+              className="inline-flex items-center justify-center rounded-full w-10 h-10 bg-primary text-primary-foreground shadow-md hover:bg-primary/90 transition-all hover:scale-105"
               aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
             >
               {isOpen ? (
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               ) : (
-                <Menu className="h-4 w-4" />
+                <Menu className="h-5 w-5" />
               )}
-            </Button>
+            </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="animate-fade-in md:hidden">
-            <div className="space-y-2 border-t border-border px-2 pb-4 pt-3">
+          <div className="md:hidden bg-background/98 backdrop-blur-xl border-b border-border shadow-lg">
+            <div className="space-y-1 px-4 py-4">
               {navigation.map((item) => {
                 const Icon = item.icon;
 
@@ -130,13 +127,13 @@ const Navigation = () => {
                     key={item.name}
                     to={item.href}
                     onClick={(e) => handleNavClick(e, item)}
-                    className={`flex items-center gap-3 rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-primary ${
+                    className={`flex items-center gap-3 rounded-lg px-4 py-3 text-base font-medium transition-colors ${
                       isActive(item)
-                        ? "text-primary bg-accent"
-                        : "text-muted-foreground"
+                        ? "bg-accent text-primary"
+                        : "text-foreground hover:bg-accent hover:text-primary"
                     }`}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-5 w-5" />
                     {item.name}
                   </Link>
                 );

@@ -184,7 +184,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           <img
             src={getImageUrl(project.images[activeIndex])}
             alt={`${project.title} preview ${activeIndex + 1}`}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
             draggable="false"
           />
         )}
@@ -194,7 +194,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background transition-all duration-300 hover:scale-110"
+              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background transition-all duration-300 ease-out hover:scale-110"
               onClick={(e) => {
                 e.stopPropagation();
                 prevImage();
@@ -206,7 +206,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background transition-all duration-300 hover:scale-110"
+              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background transition-all duration-300 ease-out hover:scale-110"
               onClick={(e) => {
                 e.stopPropagation();
                 nextImage();

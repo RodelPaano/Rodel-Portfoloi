@@ -39,12 +39,31 @@ const useTilt = (options: UseTiltOptions = {}) => {
       targetY = 0;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        const rect = element.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        const y = e.touches[0].clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        targetX = ((y - centerY) / centerY) * -maxTilt * 0.5;
+        targetY = ((x - centerX) / centerX) * maxTilt * 0.5;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
     const animate = () => {
-      currentX += (targetX - currentX) * (speed / 1000);
-      currentY += (targetY - currentY) * (speed / 1000);
+      const easing = speed / 1000;
+      currentX += (targetX - currentX) * easing;
+      currentY += (targetY - currentY) * easing;
 
       setTransform(
-        `perspective(${perspective}px) rotateX(${currentX}deg) rotateY(${currentY}deg) scale3d(${scale}, ${scale}, ${scale})`
+        `perspective(${perspective}px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`
       );
 
       rafId = requestAnimationFrame(animate);
@@ -52,12 +71,16 @@ const useTilt = (options: UseTiltOptions = {}) => {
 
     element.addEventListener("mousemove", handleMouseMove as EventListener);
     element.addEventListener("mouseleave", handleMouseLeave);
+    element.addEventListener("touchmove", handleTouchMove, { passive: true });
+    element.addEventListener("touchend", handleTouchEnd);
 
     rafId = requestAnimationFrame(animate);
 
     return () => {
       element.removeEventListener("mousemove", handleMouseMove as EventListener);
       element.removeEventListener("mouseleave", handleMouseLeave);
+      element.removeEventListener("touchmove", handleTouchMove);
+      element.removeEventListener("touchend", handleTouchEnd);
       cancelAnimationFrame(rafId);
       setTransform("");
     };

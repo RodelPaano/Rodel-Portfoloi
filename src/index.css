@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* --- ✅ Add these Tailwind Directives at the top --- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Senior Engineer Portfolio Design System */
+/* Senior Engineer Portfolio - Smooth Mobile + Desktop */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -79,14 +78,18 @@
 
   body {
     @apply bg-background text-foreground font-inter antialiased;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
-/* --- Premium 3D Design System --- */
+/* --- Premium 3D + Mobile Design System --- */
 @layer components {
   .perspective-container {
     perspective: 1200px;
@@ -95,14 +98,16 @@
 
   .card-3d {
     transform-style: preserve-3d;
-    will-change: transform;
-    transition: transform 0.15s ease-out, box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, box-shadow;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     box-shadow:
       0 1px 1px 0 hsl(var(--border) / 0.5),
       0 4px 6px -2px hsl(var(--border) / 0.3),
       0 12px 24px -8px hsl(var(--primary) / 0.12),
       0 24px 48px -12px hsl(var(--primary) / 0.08);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .card-3d:hover {
@@ -139,7 +144,7 @@
       transparent 65%
     );
     transform: translateX(-100%) translateY(-100%) rotate(45deg);
-    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
     z-index: 10;
   }
@@ -151,6 +156,7 @@
   .profile-3d {
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-transform-style: preserve-3d;
   }
 
   .profile-3d:hover {
@@ -161,6 +167,7 @@
     transform-style: preserve-3d;
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     transform: translateZ(0);
+    -webkit-transform-style: preserve-3d;
   }
 
   .tech-card-3d:hover {
@@ -174,17 +181,20 @@
   .floating-3d {
     animation: float-3d 7s ease-in-out infinite;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
   }
 
   .floating-3d-delay {
     animation: float-3d 8.5s ease-in-out infinite;
     animation-delay: -3s;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
   }
 
   .section-3d {
     transform-style: preserve-3d;
     position: relative;
+    -webkit-transform-style: preserve-3d;
   }
 
   .section-3d::before {
@@ -214,6 +224,35 @@
     pointer-events: none;
     z-index: 0;
   }
+
+  /* Mobile-specific smooth touch feedback */
+  @media (hover: none) and (pointer: coarse) {
+    .card-3d {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .card-3d:active {
+      transform: scale(0.98);
+      box-shadow:
+        0 1px 1px 0 hsl(var(--border) / 0.5),
+        0 4px 6px -2px hsl(var(--border) / 0.3),
+        0 12px 24px -8px hsl(var(--primary) / 0.12);
+    }
+
+    .card-3d-shine::after {
+      display: none;
+    }
+
+    .profile-3d {
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .floating-3d,
+    .floating-3d-delay {
+      animation-duration: 5s;
+    }
+  }
 }
 
 @keyframes float-3d {
@@ -222,23 +261,24 @@
     transform: translateY(0) translateZ(0) rotateX(0) rotateY(0);
   }
   25% {
-    transform: translateY(-12px) translateZ(8px) rotateX(2deg) rotateY(-2deg);
+    transform: translateY(-10px) translateZ(6px) rotateX(1.5deg) rotateY(-1.5deg);
   }
   50% {
-    transform: translateY(-22px) translateZ(16px) rotateX(0deg) rotateY(0deg);
+    transform: translateY(-18px) translateZ(12px) rotateX(0deg) rotateY(0deg);
   }
   75% {
-    transform: translateY(-12px) translateZ(8px) rotateX(-2deg) rotateY(2deg);
+    transform: translateY(-10px) translateZ(6px) rotateX(-1.5deg) rotateY(1.5deg);
   }
 }
 
-/* --- Scroll Reveal Animations --- */
+/* --- Smooth Scroll Reveal Animations --- */
 @layer utilities {
   .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
   }
 
   .reveal.active {
@@ -249,8 +289,9 @@
   .reveal-left {
     opacity: 0;
     transform: translateX(-40px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
   }
 
   .reveal-left.active {
@@ -261,8 +302,9 @@
   .reveal-right {
     opacity: 0;
     transform: translateX(40px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
   }
 
   .reveal-right.active {
@@ -273,8 +315,9 @@
   .reveal-scale {
     opacity: 0;
     transform: scale(0.92);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
   }
 
   .reveal-scale.active {
@@ -284,30 +327,31 @@
 
   .stagger-children > * {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
   }
 
   .stagger-children.active > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
-  .stagger-children.active > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
-  .stagger-children.active > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
-  .stagger-children.active > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
-  .stagger-children.active > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
-  .stagger-children.active > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
-  .stagger-children.active > *:nth-child(7) { transition-delay: 480ms; opacity: 1; transform: translateY(0); }
-  .stagger-children.active > *:nth-child(8) { transition-delay: 560ms; opacity: 1; transform: translateY(0); }
+  .stagger-children.active > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: translateY(0); }
+  .stagger-children.active > *:nth-child(3) { transition-delay: 200ms; opacity: 1; transform: translateY(0); }
+  .stagger-children.active > *:nth-child(4) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
+  .stagger-children.active > *:nth-child(5) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+  .stagger-children.active > *:nth-child(6) { transition-delay: 500ms; opacity: 1; transform: translateY(0); }
+  .stagger-children.active > *:nth-child(7) { transition-delay: 600ms; opacity: 1; transform: translateY(0); }
+  .stagger-children.active > *:nth-child(8) { transition-delay: 700ms; opacity: 1; transform: translateY(0); }
 
   .text-balance {
     text-wrap: balance;
   }
 }
 
-/* --- Enhanced Animations --- */
+/* --- Smooth Enhanced Animations --- */
 @keyframes page-fade-slide {
   0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.97);
+    transform: translateY(24px) scale(0.97);
   }
   100% {
     opacity: 1;
@@ -316,14 +360,14 @@
 }
 
 .page-transition {
-  animation: page-fade-slide 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-fade-slide 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: transform, opacity;
 }
 
 @keyframes home-rise {
   0% {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(28px);
   }
   100% {
     opacity: 1;
@@ -334,19 +378,19 @@
 .animate-rise-delay-1,
 .animate-rise-delay-2,
 .animate-rise-delay-3 {
-  animation: home-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: home-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-rise-delay-1 {
-  animation-delay: 0.1s;
+  animation-delay: 0.15s;
 }
 
 .animate-rise-delay-2 {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
 }
 
 .animate-rise-delay-3 {
-  animation-delay: 0.3s;
+  animation-delay: 0.45s;
 }
 
 @keyframes home-drift {
@@ -362,7 +406,7 @@
   background:
     radial-gradient(circle, hsl(var(--primary) / 0.12), transparent 65%),
     radial-gradient(circle at 75% 40%, hsl(var(--muted-foreground) / 0.08), transparent 55%);
-  animation: home-drift 12s ease-in-out infinite alternate;
+  animation: home-drift 14s ease-in-out infinite alternate;
 }
 
 @keyframes home-pulse {
@@ -379,7 +423,7 @@
 
 .home-profile-glow {
   background: hsl(var(--primary) / 0.15);
-  animation: home-pulse 5s ease-in-out infinite;
+  animation: home-pulse 5.5s ease-in-out infinite;
 }
 
 @keyframes home-spin {
@@ -389,7 +433,7 @@
 }
 
 .home-orbit {
-  animation: home-spin 24s linear infinite;
+  animation: home-spin 26s linear infinite;
 }
 
 .home-float-card {
@@ -397,7 +441,7 @@
 }
 
 .home-code-card {
-  animation: home-float 7.2s ease-in-out infinite reverse;
+  animation: home-float 7.4s ease-in-out infinite reverse;
 }
 
 @keyframes home-progress {
@@ -411,7 +455,7 @@
 }
 
 .home-progress {
-  animation: home-progress 3s ease-in-out infinite;
+  animation: home-progress 3.2s ease-in-out infinite;
   transform-origin: left;
 }
 
@@ -438,7 +482,7 @@
 @keyframes counter-up {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -447,7 +491,7 @@
 }
 
 .animate-counter {
-  animation: counter-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: counter-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Reduced motion */

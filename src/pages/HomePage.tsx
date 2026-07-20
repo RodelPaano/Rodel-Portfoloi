@@ -100,13 +100,13 @@ const HomePage = () => {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="group transition-all duration-300 hover:scale-105">
+                <Button asChild size="lg" className="group transition-all duration-300 ease-out hover:scale-105">
                   <a href="#projects" onClick={scrollToSection("projects")}>
                     View My Work
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
                   </a>
                 </Button>
-                <Button variant="outline" asChild size="lg" className="transition-all duration-300 hover:scale-105">
+                <Button variant="outline" asChild size="lg" className="transition-all duration-300 ease-out hover:scale-105">
                   <a href="#contact" onClick={scrollToSection("contact")}>
                     Get in Touch
                   </a>
@@ -117,7 +117,7 @@ const HomePage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="ghost" size="lg" className="transition-all duration-300 hover:scale-105">
+                  <Button variant="ghost" size="lg" className="transition-all duration-300 ease-out hover:scale-105">
                     <Download className="mr-2 h-4 w-4" />
                     Download CV
                   </Button>
@@ -129,7 +129,7 @@ const HomePage = () => {
                   <TiltCard
                     key={item.label}
                     maxTilt={6}
-                    className="card-3d card-3d-shine rounded-lg border border-border bg-background/75 p-4 shadow-sm backdrop-blur transition-colors duration-300"
+                    className="card-3d card-3d-shine rounded-lg border border-border bg-background/75 p-4 shadow-sm backdrop-blur transition-all duration-300 ease-out"
                   >
                     <p className="text-2xl font-bold animate-counter">{item.value}</p>
                     <p className="mt-1 text-xs leading-5 text-muted-foreground sm:text-sm">
@@ -181,7 +181,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <Card className="home-float-card card-3d card-3d-shine p-4 shadow-xl backdrop-blur transition-all duration-300 hover:shadow-2xl">
+                  <Card className="home-float-card card-3d card-3d-shine p-4 shadow-xl backdrop-blur transition-all duration-300 ease-out hover:shadow-2xl">
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                         <Rocket className="h-5 w-5" />
@@ -196,7 +196,7 @@ const HomePage = () => {
                       </div>
                     </div>
                   </Card>
-                  <Card className="home-code-card floating-3d-delay card-3d card-3d-shine p-4 shadow-xl backdrop-blur transition-all duration-300 hover:shadow-2xl">
+                  <Card className="home-code-card floating-3d-delay card-3d card-3d-shine p-4 shadow-xl backdrop-blur transition-all duration-300 ease-out hover:shadow-2xl">
                     <div className="mb-3 flex items-center gap-2">
                       <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
                       <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
@@ -246,10 +246,10 @@ const HomePage = () => {
                 <TiltCard
                   key={tech.name}
                   maxTilt={10}
-                  className="card-3d card-3d-shine rounded-lg border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                  className="card-3d card-3d-shine rounded-lg border border-border bg-card p-5 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl"
                 >
-                  <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-muted transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-muted transition-all duration-300 ease-out group-hover:bg-primary group-hover:text-primary-foreground">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-semibold">{tech.name}</h3>
@@ -278,10 +278,10 @@ const HomePage = () => {
                 I'm always open to discussing new opportunities and interesting
                 projects.
               </p>
-              <Button asChild size="lg" className="group transition-all duration-300 hover:scale-105">
+              <Button asChild size="lg" className="group transition-all duration-300 ease-out hover:scale-105">
                 <a href="#contact" onClick={scrollToSection("contact")}>
                   Start a Conversation
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
                 </a>
               </Button>
             </div>
@@ -291,7 +291,7 @@ const HomePage = () => {
                 <TiltCard
                   key={step}
                   maxTilt={6}
-                  className="card-3d card-3d-shine group flex items-center gap-4 rounded-lg border border-border bg-background p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  className="card-3d card-3d-shine group flex items-center gap-4 rounded-lg border border-border bg-background p-4 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
                     {index + 1}
