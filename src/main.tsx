@@ -15,11 +15,5 @@ const router = createHashRouter(routes, {
 });
 
 createRoot(document.getElementById("root")!).render(
-<<<<<<< HEAD
   <RouterProvider router={router} />
-=======
-  <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-    <App />
-  </HashRouter>
->>>>>>> features/projectpage
 );
