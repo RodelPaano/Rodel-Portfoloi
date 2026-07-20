@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+      <defs>
+        <linearGradient id="booking1-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#042f2e" />
+          <stop offset="100%" stop-color="#0f172a" />
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="700" rx="24" fill="url(#booking1-bg)" />
+      <rect x="50" y="50" width="1100" height="600" rx="16" fill="#115e59" fill-opacity="0.2" stroke="#0d9488" stroke-width="2" />
+      <!-- Resort UI Header -->
+      <text x="90" y="105" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="24">Paradise Cove Resort</text>
+      <!-- Search Calendar Box -->
+      <rect x="90" y="140" width="1020" height="80" rx="10" fill="#0f172a" stroke="#115e59" stroke-width="2" />
+      <!-- Inputs -->
+      <text x="120" y="172" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">CHECK IN</text>
+      <text x="120" y="200" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="16">Oct 24, 2026</text>
+      <line x1="280" y1="155" x2="280" y2="205" stroke="#115e59" />
+      <text x="310" y="172" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">CHECK OUT</text>
+      <text x="310" y="200" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="16">Oct 29, 2026</text>
+      <line x1="470" y1="155" x2="470" y2="205" stroke="#115e59" />
+      <text x="500" y="172" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">GUESTS</text>
+      <text x="500" y="200" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="16">2 Adults, 1 Child</text>
+      <rect x="900" y="160" width="180" height="40" rx="6" fill="#0d9488" />
+      <text x="948" y="185" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="16">Check Rooms</text>
+      <!-- Villa Selection Grid -->
+      <rect x="90" y="250" width="485" height="360" rx="12" fill="#0f172a" stroke="#115e59" stroke-width="2" />
+      <rect x="110" y="270" width="445" height="180" rx="8" fill="#14b8a6" fill-opacity="0.1" />
+      <path d="M 160 380 Q 220 300 280 370 T 400 340 L 400 450 L 160 450 Z" fill="#0d9488" fill-opacity="0.5" />
+      <text x="110" y="480" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="22">Oceanfront Deluxe Villa</text>
+      <text x="110" y="510" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="15">King Bed • Private Balcony • Free Wi-Fi</text>
+      <text x="110" y="575" fill="#14b8a6" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="26">$280<tspan font-size="14" fill="#94a3b8"> / night</tspan></text>
+      <rect x="390" y="545" width="165" height="40" rx="6" fill="#0d9488" />
+      <text x="445" y="570" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="15">Book Now</text>
+      <rect x="625" y="250" width="485" height="360" rx="12" fill="#0f172a" stroke="#115e59" stroke-width="2" />
+      <rect x="645" y="270" width="445" height="180" rx="8" fill="#f59e0b" fill-opacity="0.1" />
+      <rect x="740" y="300" width="240" height="120" rx="8" fill="#f59e0b" fill-opacity="0.4" />
+      <text x="645" y="480" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="22">Tropical Garden Bungalow</text>
+      <text x="645" y="510" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="15">Queen Bed • Outdoor Shower • Pool View</text>
+      <text x="645" y="575" fill="#14b8a6" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="26">$190<tspan font-size="14" fill="#94a3b8"> / night</tspan></text>
+      <rect x="925" y="545" width="165" height="40" rx="6" fill="#0d9488" />
+      <text x="980" y="570" fill="#ffffff" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="15">Book Now</text>
+    </svg>
