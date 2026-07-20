@@ -1,3 +1,5 @@
+import TiltCard from "@/components/TiltCard";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import { useState, useEffect } from "react";
 import {
   Card,
@@ -25,7 +27,6 @@ const getImageUrl = (path: string) => {
   if (path.startsWith("data:") || path.startsWith("http://") || path.startsWith("https://")) {
     return path;
   }
-  // Strip leading slash if any
   const cleanPath = path.startsWith("/") ? path.slice(1) : path;
   return `${import.meta.env.BASE_URL}${cleanPath}`;
 };
@@ -50,8 +51,6 @@ const projects: Project[] = [
       "Images/air-quality-1.png",
       "Images/air-quality-2.png",
     ],
-    // github: "https://github.com/RodelPaano/",
-    // demo: "#",
   },
   {
     id: 2,
@@ -64,8 +63,6 @@ const projects: Project[] = [
       "Images/online-store-1.png",
       "Images/online-store-2.png",
     ],
-    // github: "https://github.com/RodelPaano/",
-    // demo: "#",
   },
   {
     id: 3,
@@ -78,8 +75,6 @@ const projects: Project[] = [
       "Images/weather-simulator-1.svg",
       "Images/weather-simulator-2.svg",
     ],
-    // github: "https://github.com/RodelPaano/",
-    // demo: "#",
   },
   {
     id: 4,
@@ -92,8 +87,6 @@ const projects: Project[] = [
       "Images/booking-resort-1.png",
       "Images/booking-resort-2.png",
     ],
-    // github: "https://github.com/RodelPaano/",
-    // demo: "https://github.com/RodelPaano/",
   },
   {
     id: 5,
@@ -106,8 +99,6 @@ const projects: Project[] = [
       "Images/Portfolio1.png",
       "Images/Portfolio2.png",
     ],
-    // github: "https://github.com/RodelPaano/",
-    // demo: "https://github.com/RodelPaano/",
   },
   {
     id: 6,
@@ -120,8 +111,6 @@ const projects: Project[] = [
       "Images/chat-app-1.svg",
       "Images/chat-app-2.svg",
     ],
-    // github: "https://github.com/RodelPaano/",
-    // demo: "https://github.com/RodelPaano/",
   },
 ];
 
@@ -134,8 +123,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
 
-  // Automatically cycle images every 20 seconds.
-  // Re-runs and resets interval when activeIndex changes to prevent immediate switching on manual click.
   useEffect(() => {
     if (!project.images || project.images.length <= 1) return;
 
@@ -173,7 +160,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     const diffX = touchStart.x - touchEnd.x;
     const diffY = touchStart.y - touchEnd.y;
 
-    // Trigger swipe if horizontal drag is dominant and above 50px threshold
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
       if (diffX > 0) {
         nextImage();
@@ -185,9 +171,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
   };
 
   return (
-    <Card
-      className="group overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-      style={{ animationDelay: `${index * 80}ms` }}
+    <TiltCard
+      maxTilt={8}
+      className="card-3d card-3d-shine rounded-lg border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
     >
       <div
         className="relative h-48 overflow-hidden bg-muted cursor-grab active:cursor-grabbing select-none"
@@ -208,7 +194,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background"
+              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background transition-all duration-300 hover:scale-110"
               onClick={(e) => {
                 e.stopPropagation();
                 prevImage();
@@ -220,7 +206,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background"
+              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 text-foreground shadow-sm hover:bg-background transition-all duration-300 hover:scale-110"
               onClick={(e) => {
                 e.stopPropagation();
                 nextImage();
@@ -230,7 +216,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               <span className="sr-only">Next image</span>
             </Button>
 
-            {/* Indicator dots for multiple images */}
             <div className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 flex space-x-1.5 bg-black/30 px-2 py-1 rounded-full backdrop-blur-sm">
               {project.images.map((_, i) => (
                 <div
@@ -255,7 +240,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <Button
               variant="ghost"
               size="sm"
-              className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
+              className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 hover:scale-110"
               asChild
             >
               <a
@@ -269,7 +254,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <Button
               variant="ghost"
               size="sm"
-              className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100"
+              className="opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 hover:scale-110"
               asChild
             >
               <a
@@ -296,48 +281,48 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           ))}
         </div>
       </CardContent>
-    </Card>
+    </TiltCard>
   );
 };
 
 const ProjectsPage = () => {
+  const headerRef = useScrollReveal({ once: true });
+  const gridRef = useScrollReveal({ once: true });
+
   return (
     <div className="min-h-screen pt-nav-height">
-      <div className="relative overflow-hidden px-4 py-section sm:px-6 lg:px-8">
+      <div className="relative overflow-hidden px-4 py-section sm:px-6 lg:px-8 section-3d">
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="home-grid-bg absolute inset-0 opacity-40" />
           <div className="home-sweep absolute right-0 top-16 h-72 w-[34rem] rounded-full blur-3xl" />
         </div>
 
-        <div className="max-w-content mx-auto">
-          {/* Header */}
-          <div className="animate-fade-in mx-auto mb-16 max-w-3xl text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur">
+        <div className="max-w-content mx-auto relative z-10">
+          <div ref={headerRef.ref} className={`mx-auto mb-16 max-w-3xl text-center ${headerRef.isVisible ? 'active' : ''}`}>
+            <div className={`mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur transition-all duration-500 hover:shadow-md ${headerRef.isVisible ? 'reveal' : ''}`}>
               <Sparkles className="h-4 w-4" />
               Featured builds
             </div>
-            <h1 className="mb-6 flex items-center justify-center text-4xl font-bold leading-tight sm:text-5xl">
+            <h1 className={`mb-6 flex items-center justify-center text-4xl font-bold leading-tight sm:text-5xl text-balance ${headerRef.isVisible ? 'reveal' : ''}`}>
               <Layers3 className="mr-4 h-10 w-10" />
               My Projects
             </h1>
-            <p className="text-lg leading-8 text-muted-foreground sm:text-xl">
+            <p className={`text-lg leading-8 text-muted-foreground sm:text-xl ${headerRef.isVisible ? 'reveal' : ''}`}>
               Here are some of the projects I've worked on. Each one represents
               a learning experience and showcases different aspects of my
               development skills.
             </p>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div ref={gridRef.ref} className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 stagger-children ${gridRef.isVisible ? 'active' : ''}`}>
             {projects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
 
-          {/* CTA Section */}
-          <div className="rounded-lg border border-border bg-card p-8 shadow-sm md:p-12">
+          <div className="card-3d card-3d-shine rounded-lg border border-border bg-card p-8 shadow-sm md:p-12 transition-all duration-300 hover:shadow-xl">
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="mb-4 text-2xl font-bold">
+              <h2 className="mb-4 text-2xl font-bold text-balance">
                 Interested in Collaborating?
               </h2>
               <p className="mb-8 text-muted-foreground">
@@ -346,13 +331,13 @@ const ProjectsPage = () => {
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild className="group">
+              <Button asChild className="group transition-all duration-300 hover:scale-105">
                 <a href="mailto:rodel09paano@gmail.com">
                   Get in Touch
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild className="transition-all duration-300 hover:scale-105">
                 <a
                   href="https://github.com/RodelPaano/"
                   target="_blank"
