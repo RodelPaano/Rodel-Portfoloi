@@ -47,8 +47,8 @@ const useTilt = (options: UseTiltOptions = {}) => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        targetX = ((y - centerY) / centerY) * -maxTilt * 0.5;
-        targetY = ((x - centerX) / centerX) * maxTilt * 0.5;
+        targetX = ((y - centerY) / centerY) * -maxTilt * 0.3;
+        targetY = ((x - centerX) / centerX) * maxTilt * 0.3;
       }
     };
 
